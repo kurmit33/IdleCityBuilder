@@ -37,7 +37,7 @@ namespace IdleBuilder.Managers
         public void SetInteractionMode(PlayerInteractionMode mode)
         {
             CurrentMode = mode;
-            Debug.Log($"[PlayerClickManager] Zmieniono tryb na: {CurrentMode}");
+            //Debug.Log($"[PlayerClickManager] Zmieniono tryb na: {CurrentMode}");
         }
 
         private void OnTileClicked(TileView tile)
@@ -120,7 +120,7 @@ namespace IdleBuilder.Managers
             if (ResourceManager.Instance != null)
             {
                 ResourceManager.Instance.AddResource(targetResource, amount);
-                Debug.Log($"[Gather] Wydobyto: +{amount} {targetResource}!");
+                //Debug.Log($"[Gather] Wydobyto: +{amount} {targetResource}!");
             }
         }
 
@@ -131,25 +131,30 @@ namespace IdleBuilder.Managers
 
         private void HandleDemolition(TileView tile)
         {
+            if (tile == null)
+            {
+                Debug.LogWarning("[Demolish] Próba wyburzenia pustego kafelka.");
+                return;
+            }
             // Zabezpieczenie przed zniszczeniem kafelka Ratusza (jeśli budynek leży na kafelku)
             if (tile.Type == TileType.TownHall)
             {
                 Debug.LogWarning("[Demolish] Nie można wyburzyć Ratusza!");
                 return;
             }
-            if (BuildingManager.Instance != null && BuildingManager.Instance.HasBuildingAt(tile.GridPosition))
+            if (DemolishManager.Instance == null)
             {
-                BuildingManager.Instance.RemoveBuildingAt(tile);
-                return;
-            }
+                Debug.LogError(
+                    "[Demolish] DemolishManager.Instance == null! " +
+                    "Sprawdź, czy obiekt z komponentem DemolishManager " +
+                    "znajduje się w scenie i jest aktywny."
+                );
 
-            // 2. Jeśli nie ma budynku, wyburzamy drogę lub most
-            if (RoadNetworkManager.Instance != null && tile.HasRoad)
-            {
-                RoadNetworkManager.Instance.RemoveRoad(tile);
                 return;
             }
-            Debug.Log($"[Demolish] Wyburzam z kafelka {tile.GridPosition}");
+            DemolishManager.Instance.TryDemolish(tile);
+            
+            //Debug.Log($"[Demolish] Wyburzam z kafelka {tile.GridPosition}");
         }
 
         private void HandleRoadBuilding(TileView tile)

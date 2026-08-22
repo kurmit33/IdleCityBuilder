@@ -107,7 +107,7 @@ namespace IdleBuilder.World
 
         public void OnTileClicked()
         {
-            Debug.Log($"[TileView] Kliknięto kafelek: {GridPosition} | Typ: {Type} | Odblokowany: {IsUnlocked}");
+            //Debug.Log($"[TileView] Kliknięto kafelek: {GridPosition} | Typ: {Type} | Odblokowany: {IsUnlocked}");
             OnTileClickedEvent?.Invoke(this);
         }
 
