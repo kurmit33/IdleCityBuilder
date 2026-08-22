@@ -1,0 +1,57 @@
+using UnityEngine;
+using IdleBuilder.Core;
+using IdleBuilder.World;
+
+namespace IdleBuilder.Managers
+{
+    public class DemolishManager : MonoBehaviour
+    {
+        public static DemolishManager Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance == null) Instance = this;
+            else Destroy(gameObject);
+        }
+
+        private void OnEnable()
+        {
+            TileView.OnTileClickedEvent += HandleTileClicked;
+        }
+
+        private void OnDisable()
+        {
+            TileView.OnTileClickedEvent -= HandleTileClicked;
+        }
+
+        private void HandleTileClicked(TileView tile)
+        {
+            // Sprawdzamy, czy gracz jest w trybie Niszczenia (Demolish)
+            if (PlayerInteractionManager.Instance == null || 
+                PlayerInteractionManager.Instance.CurrentMode != PlayerInteractionMode.Demolish)
+                return;
+
+            TryDemolishAt(tile);
+        }
+
+        public bool TryDemolishAt(TileView tile)
+        {
+            if (tile == null) return false;
+
+            // 1. Najpierw sprawdzamy, czy na kafelku stoi budynek
+            if (BuildingManager.Instance != null && BuildingManager.Instance.HasBuildingAt(tile.GridPosition))
+            {
+                return BuildingManager.Instance.RemoveBuildingAt(tile);
+            }
+
+            // 2. Jeśli nie ma budynku, sprawdzamy czy stoi tam droga lub most
+            if (RoadNetworkManager.Instance != null && tile.HasRoad)
+            {
+                return RoadNetworkManager.Instance.RemoveRoadAt(tile);
+            }
+
+            Debug.Log($"[DemolishManager] Brak obiektów do zniszczenia na {tile.GridPosition}");
+            return false;
+        }
+    }
+}

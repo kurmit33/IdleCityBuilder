@@ -1,0 +1,1248 @@
+fileFormatVersion: 2
+guid: 985cf1db05535904ba82f72ecca262f4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3988769855312385993
+    second: Gold_0
+  - first:
+      213: -1688622316818091811
+    second: Gold_1
+  - first:
+      213: -5715993420535005892
+    second: Gold_2
+  - first:
+      213: 1244506449654047977
+    second: Gold_3
+  - first:
+      213: 8417888836458354848
+    second: Gold_4
+  - first:
+      213: -1203630326813522162
+    second: Gold_5
+  - first:
+      213: 6919881308099226656
+    second: Gold_6
+  - first:
+      213: 8941467883561792209
+    second: Gold_7
+  - first:
+      213: -4657225596541898658
+    second: Gold_8
+  - first:
+      213: 6355209084749932294
+    second: Gold_9
+  - first:
+      213: -7220402026832516741
+    second: Gold_10
+  - first:
+      213: -5841640008896376742
+    second: Gold_11
+  - first:
+      213: 6737499553560380436
+    second: Gold_12
+  - first:
+      213: 8509785794018813292
+    second: Gold_13
+  - first:
+      213: 8279285910279058006
+    second: Gold_14
+  - first:
+      213: -4502712052130306448
+    second: Gold_15
+  - first:
+      213: -7763692889727756783
+    second: Gold_16
+  - first:
+      213: -2186933783969771684
+    second: Gold_17
+  - first:
+      213: 7014801860087611837
+    second: Gold_18
+  - first:
+      213: -4759498062684997188
+    second: Gold_19
+  - first:
+      213: -3592490025539046033
+    second: Gold_20
+  - first:
+      213: -5210040609365450279
+    second: Gold_21
+  - first:
+      213: -2260322978597748536
+    second: Gold_22
+  - first:
+      213: 3855432684869492085
+    second: Gold_23
+  - first:
+      213: -5896945791468304349
+    second: Gold_24
+  - first:
+      213: -6444243509956227030
+    second: Gold_25
+  - first:
+      213: -4486113658106125187
+    second: Gold_26
+  - first:
+      213: -1784818079223600701
+    second: Gold_27
+  - first:
+      213: -4457893333733718852
+    second: Gold_28
+  - first:
+      213: 8394660545373626841
+    second: Gold_29
+  - first:
+      213: -6348441607778055710
+    second: Gold_30
+  - first:
+      213: -2940082044635818153
+    second: Gold_31
+  - first:
+      213: -8440127596729735460
+    second: Gold_32
+  - first:
+      213: 5422727191728425405
+    second: Gold_33
+  - first:
+      213: 2689849916378709760
+    second: Gold_34
+  - first:
+      213: -8323929295107453909
+    second: Gold_35
+  - first:
+      213: 6608575925716461140
+    second: Gold_36
+  - first:
+      213: -4235443505467333780
+    second: Gold_37
+  - first:
+      213: 4845804092316383401
+    second: Gold_38
+  - first:
+      213: -4882465381417068626
+    second: Gold_39
+  - first:
+      213: -447648982107786047
+    second: Gold_40
+  - first:
+      213: 2828565954777412055
+    second: Gold_41
+  - first:
+      213: -412790967389625752
+    second: Gold_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gold_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 440
+        width: 112
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 738a15333fa05a8c0800000000000000
+      internalID: -3988769855312385993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 408
+        width: 112
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd0b24613fec098e0800000000000000
+      internalID: -1688622316818091811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 408
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d7a86c446bca0b0800000000000000
+      internalID: -5715993420535005892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_3
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 368
+        width: 112
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e4ef44b500654110800000000000000
+      internalID: 1244506449654047977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 376
+        width: 60
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a893dffb4952d470800000000000000
+      internalID: 8417888836458354848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_5
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 344
+        width: 112
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0784694898db4fe0800000000000000
+      internalID: -1203630326813522162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 376
+        width: 64
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cae19f26b580060800000000000000
+      internalID: 6919881308099226656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_7
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 344
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d2b34a8aa9761c70800000000000000
+      internalID: 8941467883561792209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_8
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 344
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e507347bef53e5fb0800000000000000
+      internalID: -4657225596541898658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 112
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 607ead1cdfc323850800000000000000
+      internalID: 6355209084749932294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_10
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 312
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b792327ac9afbcb90800000000000000
+      internalID: -7220402026832516741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 312
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a50950cbc535eeea0800000000000000
+      internalID: -5841640008896376742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_12
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 312
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 414c15ca528608d50800000000000000
+      internalID: 6737499553560380436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 304
+        width: 112
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c652827c715d81670800000000000000
+      internalID: 8509785794018813292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_14
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 280
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 652741c7baee5e270800000000000000
+      internalID: 8279285910279058006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_15
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 280
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07627e6be372381c0800000000000000
+      internalID: -4502712052130306448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_16
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 280
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1161d8a5372d14490800000000000000
+      internalID: -7763692889727756783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 272
+        width: 112
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f4e237f4376a1e0800000000000000
+      internalID: -2186933783969771684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_18
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 216
+        width: 112
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db185403025995160800000000000000
+      internalID: 7014801860087611837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_19
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 248
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb930889abdd2fdb0800000000000000
+      internalID: -4759498062684997188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_20
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 248
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f657c980b59e42ec0800000000000000
+      internalID: -3592490025539046033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_21
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 112
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d1a9657ba732b7b0800000000000000
+      internalID: -5210040609365450279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_22
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 216
+        width: 80
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c047070a38b1a0e0800000000000000
+      internalID: -2260322978597748536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_23
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 216
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57d9315999f318530800000000000000
+      internalID: 3855432684869492085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_24
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 213
+        width: 43
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3280cc7cb07d92ea0800000000000000
+      internalID: -5896945791468304349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_25
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 230
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2051f6bba27196a0800000000000000
+      internalID: -6444243509956227030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_26
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 184
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d746e8a756f1eb1c0800000000000000
+      internalID: -4486113658106125187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_27
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 184
+        width: 80
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9ae2fc96d0b37e0800000000000000
+      internalID: -1784818079223600701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_28
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 185
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb44834c1a16222c0800000000000000
+      internalID: -4457893333733718852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_29
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 168
+        width: 112
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d16bf80a43df7470800000000000000
+      internalID: 8394660545373626841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_30
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 152
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e944134efdc5e7a0800000000000000
+      internalID: -6348441607778055710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_31
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 152
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7575af625fab237d0800000000000000
+      internalID: -2940082044635818153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_32
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 120
+        width: 112
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd6e3f12ba4aeda80800000000000000
+      internalID: -8440127596729735460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_33
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 136
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db903d866a5614b40800000000000000
+      internalID: 5422727191728425405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_34
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 120
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00ffddc5f34445520800000000000000
+      internalID: 2689849916378709760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 104
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c07ad78667b7c80800000000000000
+      internalID: -8323929295107453909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_36
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 88
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 456278b6ac066bb50800000000000000
+      internalID: 6608575925716461140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_37
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 88
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c636266729ea835c0800000000000000
+      internalID: -4235443505467333780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_38
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 72
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a8f6a5d521cf3340800000000000000
+      internalID: 4845804092316383401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_39
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 56
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea75e70aa9ffd3cb0800000000000000
+      internalID: -4882465381417068626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_40
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 56
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4766d5f91a9c9f0800000000000000
+      internalID: -447648982107786047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_41
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 40
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d1754edfb5114720800000000000000
+      internalID: 2828565954777412055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gold_42
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 112
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 862604e5dc8754af0800000000000000
+      internalID: -412790967389625752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Gold_0: -3988769855312385993
+      Gold_1: -1688622316818091811
+      Gold_10: -7220402026832516741
+      Gold_11: -5841640008896376742
+      Gold_12: 6737499553560380436
+      Gold_13: 8509785794018813292
+      Gold_14: 8279285910279058006
+      Gold_15: -4502712052130306448
+      Gold_16: -7763692889727756783
+      Gold_17: -2186933783969771684
+      Gold_18: 7014801860087611837
+      Gold_19: -4759498062684997188
+      Gold_2: -5715993420535005892
+      Gold_20: -3592490025539046033
+      Gold_21: -5210040609365450279
+      Gold_22: -2260322978597748536
+      Gold_23: 3855432684869492085
+      Gold_24: -5896945791468304349
+      Gold_25: -6444243509956227030
+      Gold_26: -4486113658106125187
+      Gold_27: -1784818079223600701
+      Gold_28: -4457893333733718852
+      Gold_29: 8394660545373626841
+      Gold_3: 1244506449654047977
+      Gold_30: -6348441607778055710
+      Gold_31: -2940082044635818153
+      Gold_32: -8440127596729735460
+      Gold_33: 5422727191728425405
+      Gold_34: 2689849916378709760
+      Gold_35: -8323929295107453909
+      Gold_36: 6608575925716461140
+      Gold_37: -4235443505467333780
+      Gold_38: 4845804092316383401
+      Gold_39: -4882465381417068626
+      Gold_4: 8417888836458354848
+      Gold_40: -447648982107786047
+      Gold_41: 2828565954777412055
+      Gold_42: -412790967389625752
+      Gold_5: -1203630326813522162
+      Gold_6: 6919881308099226656
+      Gold_7: 8941467883561792209
+      Gold_8: -4657225596541898658
+      Gold_9: 6355209084749932294
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

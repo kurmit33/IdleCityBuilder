@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 1b4e2874beeeb4d41bb1769dc5a7c8e8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4294624527356580527
+    second: Grains_0
+  - first:
+      213: -6861090749264251248
+    second: Grains_1
+  - first:
+      213: 195002972293889185
+    second: Grains_2
+  - first:
+      213: -4186370706878799034
+    second: Grains_3
+  - first:
+      213: 1772414197313698964
+    second: Grains_4
+  - first:
+      213: 4716518615982411543
+    second: Grains_5
+  - first:
+      213: -3619217988203130911
+    second: Grains_6
+  - first:
+      213: 8361160746828871997
+    second: Grains_7
+  - first:
+      213: 1289017068671758186
+    second: Grains_8
+  - first:
+      213: -7976701135770546553
+    second: Grains_9
+  - first:
+      213: 5232108585150734162
+    second: Grains_10
+  - first:
+      213: -8938361773183100194
+    second: Grains_11
+  - first:
+      213: 4544918717008701981
+    second: Grains_12
+  - first:
+      213: 2955483052034556454
+    second: Grains_13
+  - first:
+      213: 7239976176590795994
+    second: Grains_14
+  - first:
+      213: 8484524374176393861
+    second: Grains_15
+  - first:
+      213: 5076623072287310288
+    second: Grains_16
+  - first:
+      213: -2512369769067775865
+    second: Grains_17
+  - first:
+      213: 5872838100996637376
+    second: Grains_18
+  - first:
+      213: 1899523674468308688
+    second: Grains_19
+  - first:
+      213: -6265953484576475962
+    second: Grains_20
+  - first:
+      213: -2705601238907453659
+    second: Grains_21
+  - first:
+      213: -7130772385485539210
+    second: Grains_22
+  - first:
+      213: -6554881896960333219
+    second: Grains_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Grains_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 325
+        width: 54
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2d4c4f042999b30800000000000000
+      internalID: 4294624527356580527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 382
+        width: 55
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 096b26ea05288c0a0800000000000000
+      internalID: -6861090749264251248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_2
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 323
+        width: 68
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1acf8bd8b2ac4b200800000000000000
+      internalID: 195002972293889185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_3
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 289
+        width: 47
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 643636eb50607e5c0800000000000000
+      internalID: -4186370706878799034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_4
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 348
+        width: 41
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49cfdb16251e89810800000000000000
+      internalID: 1772414197313698964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_5
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 338
+        width: 103
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71f062a21b0747140800000000000000
+      internalID: 4716518615982411543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_6
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 394
+        width: 64
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1efc2784a64f5cdc0800000000000000
+      internalID: -3619217988203130911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_7
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 257
+        width: 60
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39bca0666fc80470800000000000000
+      internalID: 8361160746828871997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_8
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 255
+        width: 74
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6f6897c13283e110800000000000000
+      internalID: 1289017068671758186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_9
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 226
+        width: 47
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78e01f254901d4190800000000000000
+      internalID: -7976701135770546553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_10
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 280
+        width: 56
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f5e2c890f2c9840800000000000000
+      internalID: 5232108585150734162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_11
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 221
+        width: 85
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eda9d73235f84f380800000000000000
+      internalID: -8938361773183100194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_12
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 272
+        width: 103
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1ae35c3e7bc21f30800000000000000
+      internalID: 4544918717008701981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_13
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 175
+        width: 58
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62205305d2cf30920800000000000000
+      internalID: 2955483052034556454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_14
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 17
+        width: 40
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad43cfb39ff897460800000000000000
+      internalID: 7239976176590795994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_15
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 161
+        width: 52
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a6de227f51fb570800000000000000
+      internalID: 8484524374176393861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_16
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 153
+        width: 88
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d1cc3289c9c37640800000000000000
+      internalID: 5076623072287310288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_17
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 17
+        width: 83
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788f8429105422dd0800000000000000
+      internalID: -2512369769067775865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_18
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 61
+        width: 48
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c2c8412323808150800000000000000
+      internalID: 5872838100996637376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_19
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 124
+        width: 43
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d6d023c7b67c5a10800000000000000
+      internalID: 1899523674468308688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_20
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 117
+        width: 95
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c4b2b4118cda09a0800000000000000
+      internalID: -6265953484576475962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_21
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 17
+        width: 47
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52f70131206c37ad0800000000000000
+      internalID: -2705601238907453659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_22
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 50
+        width: 96
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67838fcbb486a0d90800000000000000
+      internalID: -7130772385485539210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grains_23
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 17
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5a6a0bd4a16805a0800000000000000
+      internalID: -6554881896960333219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Grains_0: 4294624527356580527
+      Grains_1: -6861090749264251248
+      Grains_10: 5232108585150734162
+      Grains_11: -8938361773183100194
+      Grains_12: 4544918717008701981
+      Grains_13: 2955483052034556454
+      Grains_14: 7239976176590795994
+      Grains_15: 8484524374176393861
+      Grains_16: 5076623072287310288
+      Grains_17: -2512369769067775865
+      Grains_18: 5872838100996637376
+      Grains_19: 1899523674468308688
+      Grains_2: 195002972293889185
+      Grains_20: -6265953484576475962
+      Grains_21: -2705601238907453659
+      Grains_22: -7130772385485539210
+      Grains_23: -6554881896960333219
+      Grains_3: -4186370706878799034
+      Grains_4: 1772414197313698964
+      Grains_5: 4716518615982411543
+      Grains_6: -3619217988203130911
+      Grains_7: 8361160746828871997
+      Grains_8: 1289017068671758186
+      Grains_9: -7976701135770546553
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

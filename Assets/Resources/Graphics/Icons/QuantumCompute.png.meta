@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 6919924925ca7bb4cb3c1a6488aca703
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5101190533967605613
+    second: QuantumCompute_0
+  - first:
+      213: -1933980417301896033
+    second: QuantumCompute_1
+  - first:
+      213: 6762139145681739384
+    second: QuantumCompute_2
+  - first:
+      213: -5843009087184329831
+    second: QuantumCompute_3
+  - first:
+      213: -8308897777059210913
+    second: QuantumCompute_4
+  - first:
+      213: -720081546806147817
+    second: QuantumCompute_5
+  - first:
+      213: 7360106365939921951
+    second: QuantumCompute_6
+  - first:
+      213: -2351238370424146374
+    second: QuantumCompute_7
+  - first:
+      213: -2544502375378227784
+    second: QuantumCompute_8
+  - first:
+      213: -8853251554960935963
+    second: QuantumCompute_9
+  - first:
+      213: -8028982160492406703
+    second: QuantumCompute_10
+  - first:
+      213: 3070218658049826267
+    second: QuantumCompute_11
+  - first:
+      213: 4083020469439744157
+    second: QuantumCompute_12
+  - first:
+      213: 632678820205116501
+    second: QuantumCompute_13
+  - first:
+      213: 7071922121731173333
+    second: QuantumCompute_14
+  - first:
+      213: -5311385043356318935
+    second: QuantumCompute_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: QuantumCompute_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 314
+        width: 132
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f69bc63c11bc640800000000000000
+      internalID: 5101190533967605613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 364
+        width: 120
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94a820ae0f1925e0800000000000000
+      internalID: -1933980417301896033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_2
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 364
+        width: 21
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87e9f14c9b1f7dd50800000000000000
+      internalID: 6762139145681739384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_3
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 364
+        width: 20
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993affa513679eea0800000000000000
+      internalID: -5843009087184329831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_4
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 364
+        width: 59
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f595a538e7dd0bc80800000000000000
+      internalID: -8308897777059210913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_5
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 314
+        width: 131
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7154e49f5a1c106f0800000000000000
+      internalID: -720081546806147817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 148
+        width: 129
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f14b0fa8eb9542660800000000000000
+      internalID: 7360106365939921951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_7
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 187
+        width: 162
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36b994d829be5fd0800000000000000
+      internalID: -2351238370424146374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_8
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 276
+        width: 57
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bd6179229c10bcd0800000000000000
+      internalID: -2544502375378227784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_9
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 80
+        width: 60
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e3f0670e9ee22580800000000000000
+      internalID: -8853251554960935963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_10
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 215
+        width: 131
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 158d6efa343539090800000000000000
+      internalID: -8028982160492406703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_11
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 52
+        width: 85
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdd16df4a9b9b9a20800000000000000
+      internalID: 3070218658049826267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_12
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 115
+        width: 20
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d98ca93fb7dc9a830800000000000000
+      internalID: 4083020469439744157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_13
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 28
+        width: 58
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c3d3fe80ab7c800800000000000000
+      internalID: 632678820205116501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_14
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 115
+        width: 20
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5db630973b3842260800000000000000
+      internalID: 7071922121731173333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuantumCompute_15
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 29
+        width: 20
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9238c69a17b2a46b0800000000000000
+      internalID: -5311385043356318935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      QuantumCompute_0: 5101190533967605613
+      QuantumCompute_1: -1933980417301896033
+      QuantumCompute_10: -8028982160492406703
+      QuantumCompute_11: 3070218658049826267
+      QuantumCompute_12: 4083020469439744157
+      QuantumCompute_13: 632678820205116501
+      QuantumCompute_14: 7071922121731173333
+      QuantumCompute_15: -5311385043356318935
+      QuantumCompute_2: 6762139145681739384
+      QuantumCompute_3: -5843009087184329831
+      QuantumCompute_4: -8308897777059210913
+      QuantumCompute_5: -720081546806147817
+      QuantumCompute_6: 7360106365939921951
+      QuantumCompute_7: -2351238370424146374
+      QuantumCompute_8: -2544502375378227784
+      QuantumCompute_9: -8853251554960935963
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
