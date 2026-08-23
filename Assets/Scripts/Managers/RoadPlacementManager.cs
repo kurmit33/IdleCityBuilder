@@ -12,10 +12,6 @@ namespace IdleBuilder.World
 
         [Header("Ustawienia Trybu")]
         [SerializeField] private bool isBuildModeActive = false;
-        [SerializeField] private bool manualDirectionMode = true;
-
-        private readonly int[] _maskSequence = new int[] { 5, 10, 3, 6, 12, 9, 7, 11, 13, 14, 15, 1, 2, 4, 8 };
-        private int _currentMaskIndex = 0;
 
         private TileView _currentHoveredTile;
         private SpriteRenderer _previewRenderer;
@@ -45,11 +41,6 @@ namespace IdleBuilder.World
 
             HandleMouseHover();
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                RotateSelectedMask();
-            }
-
             if (Input.GetMouseButtonDown(0) && _currentHoveredTile != null)
             {
                 TryBuildRoadOnTile(_currentHoveredTile);
@@ -61,18 +52,6 @@ namespace IdleBuilder.World
             isBuildModeActive = active;
             _previewRenderer.gameObject.SetActive(active);
             if (!active) OnTileHovered?.Invoke(null, null, false);
-        }
-
-        public void ToggleManualMode(bool manual)
-        {
-            manualDirectionMode = manual;
-            UpdatePreviewVisuals();
-        }
-
-        public void RotateSelectedMask()
-        {
-            _currentMaskIndex = (_currentMaskIndex + 1) % _maskSequence.Length;
-            UpdatePreviewVisuals();
         }
 
         private void HandleMouseHover()
@@ -101,9 +80,7 @@ namespace IdleBuilder.World
             _previewRenderer.gameObject.SetActive(true);
             _previewRenderer.transform.position = _currentHoveredTile.transform.position;
 
-            int activeMask = manualDirectionMode 
-                ? _maskSequence[_currentMaskIndex] 
-                : RoadNetworkManager.Instance.GetRoadConnectionMask(_currentHoveredTile.GridPosition);
+            int activeMask = RoadNetworkManager.Instance.GetRoadConnectionMask(_currentHoveredTile.GridPosition);
 
             RoadTier selectedTier = RoadNetworkManager.Instance.CurrentSelectedTier;
             Sprite previewSprite = RoadNetworkManager.Instance.GetSpriteFor(selectedTier, activeMask, _currentHoveredTile.Type);
@@ -169,9 +146,8 @@ namespace IdleBuilder.World
                 }
             }
 
-            int selectedMask = _maskSequence[_currentMaskIndex];
-            RoadNetworkManager.Instance.PlaceRoadManual(tile, tier, selectedMask, manualDirectionMode);
-            
+            int selectedMask = RoadNetworkManager.Instance.GetRoadConnectionMask(_currentHoveredTile.GridPosition);
+            RoadNetworkManager.Instance.PlaceRoad(tile);
             UpdatePreviewVisuals();
         }
     }

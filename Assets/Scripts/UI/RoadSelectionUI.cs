@@ -15,9 +15,6 @@ namespace IdleBuilder.UI
         [SerializeField] private Button era6RoadButton; // Maglev
         [SerializeField] private Button era7RoadButton; // Hyperloop
 
-        [Header("Przełącznik Trybu Kierunku")]
-        [SerializeField] private Toggle manualDirectionToggle;
-
         private void Start()
         {
             if (era1RoadButton) era1RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Prehistoric));
@@ -28,12 +25,6 @@ namespace IdleBuilder.UI
             if (era6RoadButton) era6RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Digital));
             if (era7RoadButton) era7RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Fusion));
 
-            if (manualDirectionToggle)
-            {
-                manualDirectionToggle.onValueChanged.AddListener((isManual) => {
-                    RoadPlacementManager.Instance.ToggleManualMode(isManual);
-                });
-            }
         }
 
         public void SelectRoadTier(RoadTier tier)

@@ -589,44 +589,7 @@ namespace IdleBuilder.World
             //);
 
             return true;
-        }
-
-        // ============================================================
-        // NOWE API - BUDOWA Z ROADPLACEMENTMANAGER
-        // ============================================================
-
-        public bool PlaceRoadManual(
-            TileView tile,
-            RoadTier tier,
-            int mask,
-            bool isManual)
-        {
-            if (tile == null)
-                return false;
-
-            _roadTiles[tile.GridPosition] = tier;
-
-            if (isManual)
-            {
-                _manualMasks[tile.GridPosition] = mask;
-            }
-            else
-            {
-                _manualMasks.Remove(
-                    tile.GridPosition
-                );
-            }
-
-            tile.SetHasRoad(true);
-
-            UpdateRoadVisualsAround(
-                tile.GridPosition
-            );
-
-            RecalculateTownHallConnections();
-
-            return true;
-        }
+        } 
 
         // ============================================================
         // STARE API - REGISTER ROAD
