@@ -40,11 +40,6 @@ namespace IdleBuilder.World
             if (!isBuildModeActive) return;
 
             HandleMouseHover();
-
-            if (Input.GetMouseButtonDown(0) && _currentHoveredTile != null)
-            {
-                TryBuildRoadOnTile(_currentHoveredTile);
-            }
         }
 
         public void SetBuildMode(bool active)
@@ -83,8 +78,28 @@ namespace IdleBuilder.World
             int activeMask = RoadNetworkManager.Instance.GetRoadConnectionMask(_currentHoveredTile.GridPosition);
 
             RoadTier selectedTier = RoadNetworkManager.Instance.CurrentSelectedTier;
-            Sprite previewSprite = RoadNetworkManager.Instance.GetSpriteFor(selectedTier, activeMask, _currentHoveredTile.Type);
-            _previewRenderer.sprite = previewSprite;
+            Sprite previewSprite =
+                RoadNetworkManager.Instance.GetSpriteFor(
+                    selectedTier,
+                    activeMask,
+                    _currentHoveredTile.Type
+                );
+
+            if (previewSprite == null)
+            {
+                Debug.LogWarning(
+                    $"[RoadPreview] Brak sprite'a! " +
+                    $"Tier={selectedTier}, " +
+                    $"Mask={activeMask}, " +
+                    $"Tile={_currentHoveredTile.Type}"
+                );
+
+                _previewRenderer.gameObject.SetActive(false);
+            }
+            else
+            {
+                _previewRenderer.sprite = previewSprite;
+            }
 
             List<ResourceCost> calculatedCosts = CalculateCostForTile(_currentHoveredTile, selectedTier);
             bool canAfford = HasEnoughResources(calculatedCosts);
@@ -131,12 +146,12 @@ namespace IdleBuilder.World
             return true;
         }
 
-        private void TryBuildRoadOnTile(TileView tile)
+        public bool TryBuildRoadOnTile(TileView tile)
         {
             RoadTier tier = RoadNetworkManager.Instance.CurrentSelectedTier;
             List<ResourceCost> costs = CalculateCostForTile(tile, tier);
 
-            if (!HasEnoughResources(costs)) return;
+            if (!HasEnoughResources(costs)) return  false;
 
             if (ResourceManager.Instance != null)
             {
@@ -147,8 +162,23 @@ namespace IdleBuilder.World
             }
 
             int selectedMask = RoadNetworkManager.Instance.GetRoadConnectionMask(_currentHoveredTile.GridPosition);
-            RoadNetworkManager.Instance.PlaceRoad(tile);
+            bool success = RoadNetworkManager.Instance.PlaceRoad(tile);
+            if (!success)
+            {
+                return false;
+            }
+            _currentHoveredTile = null;
+
+            _previewRenderer.gameObject.SetActive(false);
+
+            OnTileHovered?.Invoke(
+                null,
+                null,
+                false
+            );
             UpdatePreviewVisuals();
+            return true;            
+
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using IdleBuilder.World;
 using IdleBuilder.Managers; // Prawidłowy dostęp do PlayerInteractionMode
 
 namespace IdleBuilder.UI
@@ -94,6 +95,11 @@ namespace IdleBuilder.UI
             if (PlayerClickManager.Instance != null)
             {
                 PlayerClickManager.Instance.SetInteractionMode(mode);
+
+                if (mode == PlayerInteractionMode.BuildRoad)
+                {
+                    TileView.RefreshCurrentHover();
+                }
             }
         }
     }

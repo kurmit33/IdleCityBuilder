@@ -9,11 +9,11 @@ namespace IdleBuilder.World
     [RequireComponent(typeof(BoxCollider2D))]
     public class TileView : MonoBehaviour
     {
+        public static TileView CurrentHoveredTile { get; private set; }
         public Vector2Int GridPosition { get; private set; }
         public TileType Type { get; private set; }
         public bool IsUnlocked { get; private set; }
         public bool HasRoad { get; private set; }
-
 
         public static event Action<TileView> OnTileClickedEvent;
         public static event Action<TileView> OnTileHoveredEvent;
@@ -127,12 +127,25 @@ namespace IdleBuilder.World
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
                 return;
 
+            CurrentHoveredTile = this;
             OnTileHoveredEvent?.Invoke(this);
         }
 
         private void OnMouseExit()
         {
+            if (CurrentHoveredTile == this)
+            {
+                CurrentHoveredTile = null;
+            }
             OnTileUnhoveredEvent?.Invoke();
+        }
+
+        public static void RefreshCurrentHover()
+        {
+            if (CurrentHoveredTile != null)
+            {
+                OnTileHoveredEvent?.Invoke(CurrentHoveredTile);
+            }
         }
     }
 }

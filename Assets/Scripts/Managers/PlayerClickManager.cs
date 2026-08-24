@@ -37,7 +37,6 @@ namespace IdleBuilder.Managers
         public void SetInteractionMode(PlayerInteractionMode mode)
         {
             CurrentMode = mode;
-            //Debug.Log($"[PlayerClickManager] Zmieniono tryb na: {CurrentMode}");
         }
 
         private void OnTileClicked(TileView tile)
@@ -159,16 +158,23 @@ namespace IdleBuilder.Managers
 
         private void HandleRoadBuilding(TileView tile)
         {
-            if (RoadNetworkManager.Instance != null)
+
+            if (RoadPlacementManager.Instance == null || RoadNetworkManager.Instance == null)
             {
-                bool success = RoadNetworkManager.Instance.PlaceRoad(tile);
-                if (success)
-                {
+                Debug.LogError(
+                    "[Road] Brak RoadPlacementManager lub RoadNetworkManager!"
+                );
+
+                return;
+            }
+            bool success = RoadPlacementManager.Instance.TryBuildRoadOnTile(tile);
+            if (success)
+            {
                         // Sprawdź, czy nowo postawiona droga łączy się z Ratuszem
                         bool isConnected = RoadNetworkManager.Instance.IsRoadConnectedToTownHall(tile.GridPosition);
                         //Debug.Log($"[Road] Droga na {tile.GridPosition} | Połączona z Ratuszem: {isConnected}");
-                }
             }
+                
         }
     }
 }

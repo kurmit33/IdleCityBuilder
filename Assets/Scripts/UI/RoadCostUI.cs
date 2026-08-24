@@ -99,30 +99,19 @@ namespace IdleBuilder.UI
             }
 
             // Sprawdzanie zasobów gracza
-            bool hasWood = ResourceManager.Instance != null && ResourceManager.Instance.HasEnough(ResourceType.Wood, woodCost);
-            bool hasStone = ResourceManager.Instance != null && ResourceManager.Instance.HasEnough(ResourceType.Stone, stoneCost);
+            bool canBuild = ResourceManager.Instance != null && ResourceManager.Instance.HasEnough(ResourceType.Wood, woodCost);
+
 
             double currentWood = ResourceManager.Instance != null ? ResourceManager.Instance.GetAmount(ResourceType.Wood) : 0;
-            double currentStone = ResourceManager.Instance != null ? ResourceManager.Instance.GetAmount(ResourceType.Stone) : 0;
 
-            // Formatowanie tekstu drewna
-            if (woodCostText != null)
-            {
-                string woodColor = hasWood ? "#00FF00" : "#FF4444";
-                woodCostText.text = $"<color={woodColor}>Drewno: {currentWood}/{woodCost}</color>";
-            }
 
-            // Formatowanie tekstu kamienia
-            if (stoneCostText != null)
-            {
-                string stoneColor = hasStone ? "#00FF00" : "#FF4444";
-                stoneCostText.text = $"<color={stoneColor}>Kamień: {currentStone}/{stoneCost}</color>";
-            }
+            // Formatowanie tekstu 
+
 
             // Status zbiorczy
             if (statusText != null)
             {
-                if (hasWood && hasStone)
+                if (canBuild)
                 {
                     statusText.text = "<color=green>Kliknij, aby zbudować drogę</color>";
                 }
@@ -181,5 +170,6 @@ namespace IdleBuilder.UI
                 default: return type.ToString();
             }
         }
+        
     }
 }
