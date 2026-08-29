@@ -27,9 +27,9 @@ namespace IdleBuilder.Managers
             // 1. Droga
             if (tile.HasRoad)
             {
-                if (RoadNetworkManager.Instance != null)
+                if (RoadManager.Instance != null)
                 {
-                    return RoadNetworkManager.Instance.RemoveRoad(tile);
+                    return RoadManager.Instance.RemoveRoad(tile);
                 }
 
                 return false;

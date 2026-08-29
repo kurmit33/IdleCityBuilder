@@ -282,6 +282,18 @@ namespace IdleBuilder.World
 
         public bool RemoveRoad(TileView tile)
         {
+            Vector2Int position = tile.GridPosition;
+
+            tile.SetHasRoad(false);
+            tile.SetRoadTier(RoadTier.None);
+
+            // Zbudowany kafelek nie ma już drogi,
+            // więc nie dostanie sprite'a.
+            // Sąsiedzi muszą natomiast przeliczyć maskę.
+            RefreshRoadMasksAround(position);
+
+            RecalculateTownHallConnections();
+
             return true;
         }
 
@@ -330,6 +342,8 @@ namespace IdleBuilder.World
 
         private void RefreshRoadMasksAround(Vector2Int position)
         {
+            UpdateRoadMask(position);
+
             UpdateRoadMask(position + Vector2Int.up);
             UpdateRoadMask(position + Vector2Int.right);
             UpdateRoadMask(position + Vector2Int.down);
@@ -372,7 +386,6 @@ namespace IdleBuilder.World
             tile.SetRoadTier(RoadUI.Instance.SelectedRoadTier);
             tile.SetHasRoad(true);
 
-            UpdateRoadMask(tile.GridPosition);
             RefreshRoadMasksAround(tile.GridPosition);
 
             RecalculateTownHallConnections();

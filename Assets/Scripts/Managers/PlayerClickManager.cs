@@ -159,7 +159,7 @@ namespace IdleBuilder.Managers
         private void HandleRoadBuilding(TileView tile)
         {
 
-            if (RoadPlacementManager.Instance == null || RoadNetworkManager.Instance == null)
+            if (RoadManager.Instance == null || RoadManager.Instance == null)
             {
                 Debug.LogError(
                     "[Road] Brak RoadPlacementManager lub RoadNetworkManager!"
@@ -169,7 +169,7 @@ namespace IdleBuilder.Managers
             }
             if (CurrentMode == PlayerInteractionMode.BuildRoad)
             {
-                RoadPlacementManager.Instance.TryBuildRoadOnTile(tile);
+                RoadManager.Instance.PlaceRoad(tile);
                 return;
             }
                 

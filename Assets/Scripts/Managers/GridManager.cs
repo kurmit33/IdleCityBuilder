@@ -122,6 +122,10 @@ namespace IdleBuilder.World
             if (_tiles.TryGetValue(pos, out TileView tile)) return tile;
             return null;
         }
+        public IEnumerable<TileView> GetAllTiles()
+        {
+            return _tiles.Values;
+        }
         private Sprite GetSpriteForType(TileType type)
         {
             if (_spriteDict.TryGetValue(type, out Sprite sprite))
