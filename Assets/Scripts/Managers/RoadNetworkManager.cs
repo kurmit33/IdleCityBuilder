@@ -26,13 +26,6 @@ namespace IdleBuilder.World
 
         public RoadTier CurrentSelectedTier => currentSelectedTier;
 
-        // ============================================================
-        // DANE DRÓG
-        // ============================================================
-
-        // Zastępuje stary HashSet, zachowując dodatkowo tier drogi.
-        private readonly Dictionary<Vector2Int, RoadTier> _roadTiles =
-            new Dictionary<Vector2Int, RoadTier>();
 
         // Ręcznie ustawione maski.
         private readonly Dictionary<Vector2Int, int> _manualMasks =
@@ -366,20 +359,17 @@ namespace IdleBuilder.World
             return mask;
         }
 
-        private bool HasRoadOrTownHall(
-            Vector2Int pos)
+        private bool HasRoadOrTownHall(Vector2Int pos)
         {
             if (GridManager.Instance == null)
                 return false;
 
-            TileView tile =
-                GridManager.Instance.GetTileAt(pos);
+            TileView tile = GridManager.Instance.GetTileAt(pos);
 
             if (tile == null)
                 return false;
 
-            return _roadTiles.ContainsKey(pos) ||
-                   tile.Type == TileType.TownHall;
+            return tile.HasRoad || tile.Type == TileType.TownHall;
         }
 
 
@@ -407,7 +397,7 @@ namespace IdleBuilder.World
                 Vector2Int.left
             };
 
-            foreach (var kvp in _roadTiles)
+            foreach (var kvp in )
             {
                 Vector2Int roadPos = kvp.Key;
                 RoadTier roadTier = kvp.Value;
@@ -440,9 +430,7 @@ namespace IdleBuilder.World
                     Vector2Int neighbor =
                         currentPos + dir;
 
-                    if (!_roadTiles.TryGetValue(
-                            neighbor,
-                            out RoadTier neighborTier))
+                    if (!)
                     {
                         continue;
                     }
@@ -663,7 +651,7 @@ namespace IdleBuilder.World
             // Jeśli na kafelku już jest droga, liczymy koszt ulepszenia.
             RoadTier? currentTier = null;
 
-            if (_roadTiles.TryGetValue(tile.GridPosition, out RoadTier existingTier))
+            if ()
             {
                 currentTier = existingTier;
             }
@@ -751,9 +739,7 @@ namespace IdleBuilder.World
                 return false;
 
             // Jeżeli droga już istnieje.
-            if (_roadTiles.TryGetValue(
-                    tile.GridPosition,
-                    out RoadTier currentTier))
+            if ()
             {
                 // Nie można "ulepszyć" do tego samego
                 // lub niższego tieru.
@@ -801,6 +787,36 @@ namespace IdleBuilder.World
                     cost.amount
                 );
             }
+        }
+
+        public bool TryBuildRoad(TileView tile)
+        {
+            if (tile == null)
+                return false;
+
+            if (!CanBuildOrUpgradeRoad(
+                    tile,
+                    CurrentSelectedTier,
+                    out List<ResourceCost> costs))
+            {
+                return false;
+            }
+
+            if (!HasEnoughResourcesForRoad(costs))
+                return false;
+
+            PayRoadCosts(costs);
+
+            tile.SetRoadTier(CurrentSelectedTier);
+            tile.SetHasRoad(true);
+
+            RoadUI.Instance?.RefreshRoadVisualsAround(
+                tile.GridPosition
+            );
+
+            RecalculateTownHallConnections();
+
+            return true;
         }
     }
 }

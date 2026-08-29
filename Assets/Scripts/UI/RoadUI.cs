@@ -112,7 +112,7 @@ namespace IdleBuilder.UI
                 tile.GridPosition
             );
 
-            Sprite previewSprite = RoadNetworkManager.Instance.GetSpriteFor(
+            Sprite previewSprite = GetRoadSprite(
                 tier,
                 mask,
                 tile.Type
@@ -298,22 +298,12 @@ namespace IdleBuilder.UI
 
             if (roadSprite == null)
                 return;
-
-            tile.SetRoadSprite(roadSprite);
-            tile.SetRoadTier(tier);
-            tile.SetHasRoad(true);
         }
 
         private Sprite GetRoadSprite(RoadTier tier, int mask, TileType tileType)
         {
-            bool bridge =
-                tileType == TileType.River ||
-                tileType == TileType.Ocean;
-
-            Dictionary<RoadTier, Dictionary<int, Sprite>> sprites =
-                bridge
-                    ? _bridgeSpritesByTier
-                    : _roadSpritesByTier;
+            bool bridge = tileType == TileType.River || tileType == TileType.Ocean;
+            Dictionary<RoadTier, Dictionary<int, Sprite>> sprites =bridge? _bridgeSpritesByTier: _roadSpritesByTier;
 
             if (sprites.TryGetValue(tier, out Dictionary<int, Sprite> tierSprites) &&
                 tierSprites.TryGetValue(mask, out Sprite sprite))
@@ -389,6 +379,24 @@ namespace IdleBuilder.UI
                 default:
                     return "Era_1";
             }
+        }
+
+        public void RefreshRoadVisualsAround(Vector2Int gridPosition)
+        {
+            if (RoadNetworkManager.Instance == null) return;
+
+            int mask = RoadNetworkManager.Instance.GetRoadConnectionMask(gridPosition);
+            /*TileView tile = WorldGrid.Instance.GetTileAt(gridPosition);
+
+            if (tile == null || !tile.HasRoad) return;
+
+            RoadTier tier = tile.RoadTier;
+            Sprite newSprite = GetRoadSprite(tier, mask, tile.Type);
+
+            if (newSprite != null)
+            {
+                tile.SetRoadSprite(newSprite);
+            }*/
         }
         
     }
