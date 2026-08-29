@@ -120,9 +120,9 @@ namespace IdleBuilder.Managers
             }
 
             // 5. Weryfikacja połączenia drogowego z Ratuszem
-            if (data.requiresRoadConnection && RoadNetworkManager.Instance != null)
+            if (data.requiresRoadConnection && RoadManager.Instance != null)
             {
-                bool isConnected = RoadNetworkManager.Instance.IsBuildingConnectedToTownHall(tile.GridPosition);
+                bool isConnected = RoadManager.Instance.IsBuildingConnectedToTownHall(tile.GridPosition);
                 if (!isConnected)
                 {
                     failureReason = "Budynek musi przylegać do drogi połączonej z Ratuszem!";

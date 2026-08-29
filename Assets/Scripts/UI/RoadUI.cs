@@ -12,6 +12,7 @@ namespace IdleBuilder.UI
     public class RoadUI : MonoBehaviour
     {
         public static RoadUI Instance { get; private set; }
+        public RoadTier SelectedRoadTier = RoadTier.Prehistoric;
         [Header("UI Panel Reference")]
         [SerializeField] private GameObject tooltipPanel;
 
@@ -86,34 +87,29 @@ namespace IdleBuilder.UI
 
         public void UpdateRoadPreview(TileView tile)
         {
-            if (tile == null ||
-                !tile.IsUnlocked ||
-                tile.Type == TileType.TownHall ||
-                tile.HasRoad)
+            if (tile == null || !tile.IsUnlocked || tile.Type == TileType.TownHall )
             {
                 HideRoadPreview();
                 return;
             }
-            if(tile.HasRoad && tile.RoadTier <= RoadNetworkManager.Instance.CurrentSelectedTier)
-            {
-                HideRoadPreview();
-                return;
-            }
-
-            if (RoadNetworkManager.Instance == null)
+            if(tile.HasRoad && tile.RoadTier <= SelectedRoadTier)
             {
                 HideRoadPreview();
                 return;
             }
 
-            RoadTier tier = RoadNetworkManager.Instance.CurrentSelectedTier;
+            if (RoadManager.Instance == null)
+            {
+                HideRoadPreview();
+                return;
+            }
 
-            int mask = RoadNetworkManager.Instance.GetRoadConnectionMask(
+            int mask = RoadManager.Instance.GetRoadConnectionMask(
                 tile.GridPosition
             );
 
             Sprite previewSprite = GetRoadSprite(
-                tier,
+                SelectedRoadTier,
                 mask,
                 tile.Type
             );
@@ -142,6 +138,19 @@ namespace IdleBuilder.UI
                 previewRenderer.gameObject.SetActive(false);
             }
         }
+        public void ApplyRoadMask(TileView tile, int mask)
+        {
+            if (tile == null || RoadManager.Instance == null)
+                return;
+            RoadTier tier = tile.RoadTier;
+
+            Sprite roadSprite = GetRoadSprite(tier, mask, tile.Type);
+
+            if (roadSprite == null)
+                return;
+
+            tile.SetRoadSprite(roadSprite);
+        }
 
         public void SetRoadPreviewActive(bool active)
         {
@@ -159,7 +168,13 @@ namespace IdleBuilder.UI
                 return;
             }
 
-            if (tile == null || !tile.IsUnlocked || tile.HasRoad)
+            if (tile == null || !tile.IsUnlocked || tile.Type == TileType.TownHall)
+            {
+                HideTooltip();
+                HideRoadPreview();
+                return;
+            }
+            if(tile.HasRoad && tile.RoadTier <= SelectedRoadTier)
             {
                 HideTooltip();
                 HideRoadPreview();
@@ -175,14 +190,14 @@ namespace IdleBuilder.UI
         {
             StringBuilder costText = new StringBuilder();
             
-            if (RoadNetworkManager.Instance == null || RoadPlacementManager.Instance == null)
+            if (RoadManager.Instance == null || RoadManager.Instance == null)
             {
                 HideTooltip();
                 return;
             }
             
-            RoadTier tier = RoadNetworkManager.Instance.CurrentSelectedTier;
-            List<ResourceCost> costs = RoadPlacementManager.Instance.CalculateCostForTile(tile, tier);
+            RoadTier tier = SelectedRoadTier;
+            List<ResourceCost> costs = RoadManager.Instance.CalculateCostForTile(tile, tier);
 
             foreach (var cost in costs)
             {
@@ -212,7 +227,7 @@ namespace IdleBuilder.UI
                 }
             }
 
-            if (RoadPlacementManager.Instance.HasEnoughResources(costs))
+            if (RoadManager.Instance.HasEnoughResourcesForRoad(costs))
             {
                 statusText.text = "<color=green>Kliknij, aby zbudować drogę</color>";
             }
@@ -225,7 +240,7 @@ namespace IdleBuilder.UI
                 costTextText.text = costText.ToString();
             }
 
-            if (RoadPlacementManager.Instance.HasEnoughResources(costs))
+            if (RoadManager.Instance.HasEnoughResourcesForRoad(costs))
             {
                 statusText.text =
                     "<color=green>Kliknij, aby zbudować drogę</color>";
@@ -283,22 +298,6 @@ namespace IdleBuilder.UI
             }
         }
 
-        public void ApplyRoadToTile(TileView tile)
-        {
-            if (tile == null || RoadNetworkManager.Instance == null)
-                return;
-
-            RoadTier tier = RoadNetworkManager.Instance.CurrentSelectedTier;
-
-            int mask = RoadNetworkManager.Instance.GetRoadConnectionMask(
-                tile.GridPosition
-            );
-
-            Sprite roadSprite = GetRoadSprite(selectedRoadTier, mask, tile.Type);
-
-            if (roadSprite == null)
-                return;
-        }
 
         private Sprite GetRoadSprite(RoadTier tier, int mask, TileType tileType)
         {
@@ -319,10 +318,10 @@ namespace IdleBuilder.UI
             _roadSpritesByTier.Clear();
             _bridgeSpritesByTier.Clear();
 
-            if (RoadNetworkManager.Instance == null)
+            if (RoadManager.Instance == null)
                 return;
 
-            foreach (RoadTierConfig config in RoadNetworkManager.Instance.GetAllConfigs())
+            foreach (RoadTierConfig config in RoadManager.Instance.GetAllConfigs())
             {
                 Dictionary<int, Sprite> roadSprites = new Dictionary<int, Sprite>();
                 Dictionary<int, Sprite> bridgeSprites = new Dictionary<int, Sprite>();
@@ -379,24 +378,6 @@ namespace IdleBuilder.UI
                 default:
                     return "Era_1";
             }
-        }
-
-        public void RefreshRoadVisualsAround(Vector2Int gridPosition)
-        {
-            if (RoadNetworkManager.Instance == null) return;
-
-            int mask = RoadNetworkManager.Instance.GetRoadConnectionMask(gridPosition);
-            /*TileView tile = WorldGrid.Instance.GetTileAt(gridPosition);
-
-            if (tile == null || !tile.HasRoad) return;
-
-            RoadTier tier = tile.RoadTier;
-            Sprite newSprite = GetRoadSprite(tier, mask, tile.Type);
-
-            if (newSprite != null)
-            {
-                tile.SetRoadSprite(newSprite);
-            }*/
         }
         
     }

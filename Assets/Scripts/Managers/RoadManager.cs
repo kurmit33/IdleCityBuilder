@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using IdleBuilder.UI;
 using IdleBuilder.Core;
 using IdleBuilder.Managers;
 
 namespace IdleBuilder.World
 {
 
-    public class RoadNetworkManager : MonoBehaviour
+    public class RoadManager : MonoBehaviour
     {
-        public static RoadNetworkManager Instance { get; private set; }
+        public static RoadManager Instance { get; private set; }
 
 
 
@@ -18,31 +19,14 @@ namespace IdleBuilder.World
         // ============================================================
 
         [Header("Konfiguracja Dróg")]
-        [SerializeField] private List<RoadTierConfig> roadTierConfigs =
-            new List<RoadTierConfig>();
+        [SerializeField] private List<RoadTierConfig> roadTierConfigs = new List<RoadTierConfig>();
 
-        [SerializeField] private RoadTier currentSelectedTier =
-            RoadTier.Prehistoric;
-
-        public RoadTier CurrentSelectedTier => currentSelectedTier;
-
-
-        // Ręcznie ustawione maski.
-        private readonly Dictionary<Vector2Int, int> _manualMasks =
-            new Dictionary<Vector2Int, int>();
 
         // Stare połączenie z Town Hall.
-        private readonly HashSet<Vector2Int> _connectedToTownHall =
-            new HashSet<Vector2Int>();
+        private readonly HashSet<Vector2Int> _connectedToTownHall = new HashSet<Vector2Int>();
 
         // Najlepszy bottleneck tier ścieżki do Town Hall.
-        private readonly Dictionary<Vector2Int, RoadTier> _connectedPathBottleneck =
-            new Dictionary<Vector2Int, RoadTier>();
-
-
-        // ============================================================
-        // UNITY
-        // ============================================================
+        private readonly Dictionary<Vector2Int, RoadTier> _connectedPathBottleneck = new Dictionary<Vector2Int, RoadTier>();
 
         private void Awake()
         {
@@ -83,8 +67,8 @@ namespace IdleBuilder.World
                 eraRequirement = EraType.Prehistory,
                 productionBonusPercent = -5f,
                 maintenanceDiscountPercent = -5f,
-                roadFolder = "Graphics/Road/Era1/",
-                bridgeFolder = "Graphics/Bridge/Era1/",
+                roadFolder = "Graphics/Road/Era_1/",
+                bridgeFolder = "Graphics/Bridge/Era_1/",
                 baseCosts = new List<ResourceCost>
                 {
                     new ResourceCost
@@ -107,8 +91,8 @@ namespace IdleBuilder.World
                 eraRequirement = EraType.Antiquity,
                 productionBonusPercent = 5f,
                 maintenanceDiscountPercent = 0f,
-                roadFolder = "Graphics/Road/Era2/",
-                bridgeFolder = "Graphics/Bridge/Era2/",
+                roadFolder = "Graphics/Road/Era_2/",
+                bridgeFolder = "Graphics/Bridge/Era_2/",
                 baseCosts = new List<ResourceCost>
                 {
                     new ResourceCost
@@ -136,8 +120,8 @@ namespace IdleBuilder.World
                 eraRequirement = EraType.MiddleAges,
                 productionBonusPercent = 20f,
                 maintenanceDiscountPercent = 10f,
-                roadFolder = "Graphics/Road/Era3/",
-                bridgeFolder = "Graphics/Bridge/Era3/",
+                roadFolder = "Graphics/Road/Era_3/",
+                bridgeFolder = "Graphics/Bridge/Era_3/",
                 baseCosts = new List<ResourceCost>
                 {
                     new ResourceCost
@@ -165,8 +149,8 @@ namespace IdleBuilder.World
                 eraRequirement = EraType.Industrial,
                 productionBonusPercent = 35f,
                 maintenanceDiscountPercent = 18f,
-                roadFolder = "Graphics/Road/Era4/",
-                bridgeFolder = "Graphics/Bridge/Era4/",
+                roadFolder = "Graphics/Road/Era_4/",
+                bridgeFolder = "Graphics/Bridge/Era_4/",
                 baseCosts = new List<ResourceCost>
                 {
                     new ResourceCost
@@ -194,8 +178,8 @@ namespace IdleBuilder.World
                 eraRequirement = EraType.Atomic,
                 productionBonusPercent = 50f,
                 maintenanceDiscountPercent = 25f,
-                roadFolder = "Graphics/Road/Era5/",
-                bridgeFolder = "Graphics/Bridge/Era5/",
+                roadFolder = "Graphics/Road/Era_5/",
+                bridgeFolder = "Graphics/Bridge/Era_5/",
                 baseCosts = new List<ResourceCost>
                 {
                     new ResourceCost
@@ -223,8 +207,8 @@ namespace IdleBuilder.World
                 eraRequirement = EraType.Digital,
                 productionBonusPercent = 70f,
                 maintenanceDiscountPercent = 35f,
-                roadFolder = "Graphics/Road/Era6/",
-                bridgeFolder = "Graphics/Bridge/Era6/",
+                roadFolder = "Graphics/Road/Era_6/",
+                bridgeFolder = "Graphics/Bridge/Era_6/",
                 baseCosts = new List<ResourceCost>
                 {
                     new ResourceCost
@@ -252,8 +236,8 @@ namespace IdleBuilder.World
                 eraRequirement = EraType.Fusion,
                 productionBonusPercent = 100f,
                 maintenanceDiscountPercent = 50f,
-                roadFolder = "Graphics/Road/Era7/",
-                bridgeFolder = "Graphics/Bridge/Era7/",
+                roadFolder = "Graphics/Road/Era_7/",
+                bridgeFolder = "Graphics/Bridge/Era_7/",
                 baseCosts = new List<ResourceCost>
                 {
                     new ResourceCost
@@ -273,16 +257,6 @@ namespace IdleBuilder.World
                     }
                 }
             });
-        }
-
-
-        public void SetSelectedRoadTier(RoadTier newTier)
-        {
-            currentSelectedTier = newTier;
-
-            Debug.Log(
-                $"[RoadNetworkManager] Wybrano typ drogi: {newTier}"
-            );
         }
 
         public RoadTierConfig GetConfig(RoadTier tier)
@@ -305,15 +279,6 @@ namespace IdleBuilder.World
             return null;
         }
 
-    
-
-        public bool PlaceRoad(TileView tile)
-        {
-            
-
-            return true;
-        } 
-
 
         public bool RemoveRoad(TileView tile)
         {
@@ -323,37 +288,28 @@ namespace IdleBuilder.World
 
 
 
-        public int GetRoadConnectionMask(
-            Vector2Int pos)
+        public int GetRoadConnectionMask(Vector2Int pos)
         {
             int mask = 0;
 
-            if (HasRoadOrTownHall(
-                    pos + Vector2Int.up))
+            if (HasRoadOrTownHall(pos + Vector2Int.up))
             {
-                mask |=
-                    (int)RoadDirections.North;
+                mask |= (int)RoadDirections.North;
             }
 
-            if (HasRoadOrTownHall(
-                    pos + Vector2Int.right))
+            if (HasRoadOrTownHall(pos + Vector2Int.right))
             {
-                mask |=
-                    (int)RoadDirections.East;
+                mask |= (int)RoadDirections.East;
             }
 
-            if (HasRoadOrTownHall(
-                    pos + Vector2Int.down))
+            if (HasRoadOrTownHall( pos + Vector2Int.down))
             {
-                mask |=
-                    (int)RoadDirections.South;
+                mask |= (int)RoadDirections.South;
             }
 
-            if (HasRoadOrTownHall(
-                    pos + Vector2Int.left))
+            if (HasRoadOrTownHall(pos + Vector2Int.left))
             {
-                mask |=
-                    (int)RoadDirections.West;
+                mask |= (int)RoadDirections.West;
             }
 
             return mask;
@@ -372,10 +328,58 @@ namespace IdleBuilder.World
             return tile.HasRoad || tile.Type == TileType.TownHall;
         }
 
+        private void RefreshRoadMasksAround(Vector2Int position)
+        {
+            UpdateRoadMask(position + Vector2Int.up);
+            UpdateRoadMask(position + Vector2Int.right);
+            UpdateRoadMask(position + Vector2Int.down);
+            UpdateRoadMask(position + Vector2Int.left);
+        }
 
-        // ============================================================
-        // POŁĄCZENIA Z TOWN HALL
-        // ============================================================
+        private void UpdateRoadMask(Vector2Int position)
+        {
+            TileView tile = GridManager.Instance.GetTileAt(position);
+
+            if (tile == null || !tile.HasRoad)
+                return;
+
+            int mask = GetRoadConnectionMask(position);
+
+            RoadUI.Instance?.ApplyRoadMask(
+                tile,
+                mask
+            );
+        }
+
+        public bool PlaceRoad(TileView tile)
+        {
+            if (tile == null)
+                return false;
+
+            if (!CanBuildOrUpgradeRoad(
+                    tile,
+                    RoadUI.Instance.SelectedRoadTier,
+                    out List<ResourceCost> costs))
+            {
+                return false;
+            }
+
+            if (!HasEnoughResourcesForRoad(costs))
+                return false;
+
+            PayRoadCosts(costs);
+
+            tile.SetRoadTier(RoadUI.Instance.SelectedRoadTier);
+            tile.SetHasRoad(true);
+
+            UpdateRoadMask(tile.GridPosition);
+            RefreshRoadMasksAround(tile.GridPosition);
+
+            RecalculateTownHallConnections();
+
+            return true;
+        }
+
 
         public void RecalculateTownHallConnections()
         {
@@ -385,10 +389,6 @@ namespace IdleBuilder.World
             if (GridManager.Instance == null)
                 return;
 
-            Queue<(Vector2Int pos, RoadTier bottleneck)>
-                queue =
-                    new Queue<(Vector2Int, RoadTier)>();
-
             Vector2Int[] directions =
             {
                 Vector2Int.up,
@@ -397,69 +397,70 @@ namespace IdleBuilder.World
                 Vector2Int.left
             };
 
-            foreach (var kvp in )
+            Queue<(Vector2Int pos, RoadTier bottleneck)> queue = new Queue<(Vector2Int, RoadTier)>();
+
+            // Szukamy wszystkich dróg bezpośrednio sąsiadujących z Town Hall.
+            foreach (TileView tile in GridManager.Instance.GetAllTiles())
             {
-                Vector2Int roadPos = kvp.Key;
-                RoadTier roadTier = kvp.Value;
+                if (tile == null || !tile.HasRoad)
+                    continue;
 
-                if (IsAdjacentToTownHall(roadPos))
-                {
-                    _connectedToTownHall.Add(
-                        roadPos
-                    );
+                Vector2Int roadPos = tile.GridPosition;
 
-                    _connectedPathBottleneck[
-                        roadPos
-                    ] = roadTier;
+                if (!IsAdjacentToTownHall(roadPos))
+                    continue;
 
-                    queue.Enqueue(
-                        (roadPos, roadTier)
-                    );
-                }
+                RoadTier roadTier = tile.RoadTier;
+
+                _connectedToTownHall.Add(roadPos);
+                _connectedPathBottleneck[roadPos] = roadTier;
+
+                queue.Enqueue((roadPos, roadTier));
             }
 
+            // Rozchodzimy się po całej sieci dróg.
             while (queue.Count > 0)
             {
-                var (
-                    currentPos,
-                    currentBottleneck
-                ) = queue.Dequeue();
+                var current = queue.Dequeue();
 
-                foreach (var dir in directions)
+                Vector2Int currentPos = current.pos;
+                RoadTier currentBottleneck = current.bottleneck;
+
+                foreach (Vector2Int direction in directions)
                 {
-                    Vector2Int neighbor =
-                        currentPos + dir;
+                    Vector2Int neighborPos = currentPos + direction;
 
-                    if (!)
-                    {
+                    TileView neighborTile =
+                        GridManager.Instance.GetTileAt(neighborPos);
+
+                    if (neighborTile == null || !neighborTile.HasRoad)
                         continue;
-                    }
 
+                    RoadTier neighborTier = neighborTile.RoadTier;
+
+                    // Na tej ścieżce liczy się najgorszy tier.
                     RoadTier newBottleneck =
                         neighborTier < currentBottleneck
                             ? neighborTier
                             : currentBottleneck;
 
-                    bool wasConnected =
+                    bool alreadyConnected =
                         _connectedPathBottleneck.TryGetValue(
-                            neighbor,
-                            out RoadTier existingBottleneck);
-
-                    // Jeśli znaleźliśmy lepszą ścieżkę,
-                    // aktualizujemy bottleneck.
-                    if (!wasConnected ||
-                        newBottleneck > existingBottleneck)
-                    {
-                        _connectedToTownHall.Add(
-                            neighbor
+                            neighborPos,
+                            out RoadTier existingBottleneck
                         );
 
-                        _connectedPathBottleneck[
-                            neighbor
-                        ] = newBottleneck;
+                    // Zachowujemy lepszy bottleneck.
+                    if (!alreadyConnected ||
+                        newBottleneck > existingBottleneck)
+                    {
+                        _connectedToTownHall.Add(neighborPos);
+
+                        _connectedPathBottleneck[neighborPos] =
+                            newBottleneck;
 
                         queue.Enqueue(
-                            (neighbor, newBottleneck)
+                            (neighborPos, newBottleneck)
                         );
                     }
                 }
@@ -495,12 +496,6 @@ namespace IdleBuilder.World
             }
 
             return false;
-        }
-
-        public bool IsRoadConnectedToTownHall(
-            Vector2Int pos)
-        {
-            return _connectedToTownHall.Contains(pos);
         }
 
         public bool IsBuildingConnectedToTownHall(
@@ -651,10 +646,10 @@ namespace IdleBuilder.World
             // Jeśli na kafelku już jest droga, liczymy koszt ulepszenia.
             RoadTier? currentTier = null;
 
-            if ()
+            if (tile.HasRoad)
             {
-                currentTier = existingTier;
-            }
+                currentTier = tile.RoadTier;
+            }   
 
             return CalculateTierCost(tile, currentTier, targetTier);
         }
@@ -703,8 +698,7 @@ namespace IdleBuilder.World
                 }
             }
 
-            List<ResourceCost> result =
-                new List<ResourceCost>();
+            List<ResourceCost> result = new List<ResourceCost>();
 
             foreach (var pair in combinedCosts)
             {
@@ -718,10 +712,7 @@ namespace IdleBuilder.World
             return result;
         }
 
-        public bool CanBuildOrUpgradeRoad(
-            TileView tile,
-            RoadTier targetTier,
-            out List<ResourceCost> costs)
+        public bool CanBuildOrUpgradeRoad(TileView tile, RoadTier targetTier, out List<ResourceCost> costs)
         {
             costs = new List<ResourceCost>();
 
@@ -739,11 +730,11 @@ namespace IdleBuilder.World
                 return false;
 
             // Jeżeli droga już istnieje.
-            if ()
+            if (tile.HasRoad)
             {
                 // Nie można "ulepszyć" do tego samego
                 // lub niższego tieru.
-                if (targetTier <= currentTier)
+                if (targetTier <= tile.RoadTier)
                     return false;
             }
 
@@ -755,20 +746,13 @@ namespace IdleBuilder.World
             return costs.Count > 0;
         }
 
-        public bool HasEnoughResourcesForRoad(
-            List<ResourceCost> costs)
+        public bool HasEnoughResourcesForRoad(List<ResourceCost> costs)
         {
-            if (ResourceManager.Instance == null)
-                return true;
+            if (ResourceManager.Instance == null) return true;
 
             foreach (ResourceCost cost in costs)
             {
-                if (!ResourceManager.Instance.HasEnough(
-                        cost.type,
-                        cost.amount))
-                {
-                    return false;
-                }
+                if (!ResourceManager.Instance.HasEnough(cost.type, cost.amount)) return false;
             }
 
             return true;
@@ -789,34 +773,32 @@ namespace IdleBuilder.World
             }
         }
 
-        public bool TryBuildRoad(TileView tile)
+        public List<ResourceCost> CalculateCostForTile(TileView tile, RoadTier tier)
         {
-            if (tile == null)
-                return false;
+            List<ResourceCost> result = new List<ResourceCost>();
+            RoadTierConfig config = GetConfig(tier);
 
-            if (!CanBuildOrUpgradeRoad(
-                    tile,
-                    CurrentSelectedTier,
-                    out List<ResourceCost> costs))
+            float multiplier = tile.Type switch
             {
-                return false;
+                TileType.Plains => 1.0f,
+                TileType.Forest => 2.5f,
+                TileType.Mountain => 5.0f,
+                TileType.River => 10.0f,
+                TileType.Ocean => 30.0f,
+                _ => 1.0f
+            };
+
+            foreach (var cost in config.baseCosts)
+            {
+                result.Add(new ResourceCost
+                {
+                    type = cost.type,
+                    amount = Mathf.CeilToInt(cost.amount * multiplier)
+                });
             }
 
-            if (!HasEnoughResourcesForRoad(costs))
-                return false;
-
-            PayRoadCosts(costs);
-
-            tile.SetRoadTier(CurrentSelectedTier);
-            tile.SetHasRoad(true);
-
-            RoadUI.Instance?.RefreshRoadVisualsAround(
-                tile.GridPosition
-            );
-
-            RecalculateTownHallConnections();
-
-            return true;
+            return result;
         }
+
     }
 }
