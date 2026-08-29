@@ -104,5 +104,9 @@ namespace IdleBuilder.Managers
                 Debug.Log($"Awansowano do ery: {currentEra}");
             }
         }
+
+        public EraType GetCurrentEra() => currentEra;
+        public int GetCurrentEraIndex() => (int)currentEra;
+
     }
 }

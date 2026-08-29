@@ -14,13 +14,21 @@ namespace IdleBuilder.UI
     {
         public static RoadUI Instance { get; private set; }
         public RoadTier SelectedRoadTier = RoadTier.Prehistoric;
-        [Header("UI Panel Reference")]
+        [Header("Toolpit panel")]
         [SerializeField] private GameObject tooltipPanel;
-
-        [Header("Text Fields")]
         [SerializeField] private TextMeshProUGUI tileTypeTitleText;
         [SerializeField] private TextMeshProUGUI costTextText;
         [SerializeField] private TextMeshProUGUI statusText;
+        [Header("Road Tier Panel")]
+        [SerializeField] private GameObject roadTierPanel;
+        [SerializeField] private Button era1RoadButton; // Ścieżka Ubita
+        [SerializeField] private Button era2RoadButton; // Trakt Kamienny
+        [SerializeField] private Button era3RoadButton; // Bruk
+        [SerializeField] private Button era4RoadButton; // Asfalt
+        [SerializeField] private Button era5RoadButton; // Beton
+        [SerializeField] private Button era6RoadButton; // Maglev
+        [SerializeField] private Button era7RoadButton; // Hyperloop
+
 
         [Header("Settings")]
         [Tooltip("Czy dymek ma podążać za kursorem myszy")]
@@ -30,19 +38,14 @@ namespace IdleBuilder.UI
         [SerializeField] private SpriteRenderer previewRenderer;
 
         private SpriteRenderer[] previewRenderers = new SpriteRenderer[5];
+        private Button[] _roadTierButtons;
 
         [Header("Road Sprites")]
         private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _roadSpritesByTier = new Dictionary<RoadTier, Dictionary<int, Sprite>>();
         private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _bridgeSpritesByTier = new Dictionary<RoadTier, Dictionary<int, Sprite>>();
 
-        [Header("Przyciski Wyboru Ery Dróg")]
-        [SerializeField] private Button era1RoadButton; // Ścieżka Ubita
-        [SerializeField] private Button era2RoadButton; // Trakt Kamienny
-        [SerializeField] private Button era3RoadButton; // Bruk
-        [SerializeField] private Button era4RoadButton; // Asfalt
-        [SerializeField] private Button era5RoadButton; // Beton
-        [SerializeField] private Button era6RoadButton; // Maglev
-        [SerializeField] private Button era7RoadButton; // Hyperloop
+        private TileView currentPreviewTile;
+
 
 
   
@@ -102,13 +105,24 @@ namespace IdleBuilder.UI
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
             LoadAllRoadSprites();
-            if (era1RoadButton) era1RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Prehistoric));
-            if (era2RoadButton) era2RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Antiquity));
-            if (era3RoadButton) era3RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.MiddleAges));
-            if (era4RoadButton) era4RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Industrial));
-            if (era5RoadButton) era5RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Atomic));
-            if (era6RoadButton) era6RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Digital));
-            if (era7RoadButton) era7RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Fusion));
+            _roadTierButtons = new Button[]
+            {
+                era1RoadButton,
+                era2RoadButton,
+                era3RoadButton,
+                era4RoadButton,
+                era5RoadButton,
+                era6RoadButton,
+                era7RoadButton
+            };
+
+            era1RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Prehistoric));
+            era2RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Antiquity));
+            era3RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.MiddleAges));
+            era4RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Industrial));
+            era5RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Atomic));
+            era6RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Digital));
+            era7RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Fusion));
 
         
         }
@@ -293,7 +307,7 @@ namespace IdleBuilder.UI
                 HideRoadPreview();
                 return;
             }
-
+            currentPreviewTile = tile;
             UpdateRoadPreview(tile);
             ShowTooltip(tile);
 
@@ -468,6 +482,39 @@ namespace IdleBuilder.UI
             if (SelectedRoadTier == tier) return;
             if (tier < RoadTier.Prehistoric || tier > RoadTier.Fusion) return;
             SelectedRoadTier = tier;
+            UpdateRoadPreview(currentPreviewTile);
+        }
+        
+        public void ShowRoadTierPanel()
+        {
+            if (roadTierPanel != null)
+                roadTierPanel.SetActive(true);
+
+            UpdateRoadTierButtons();
+        }
+
+        public void HideRoadTierPanel()
+        {
+            if (roadTierPanel != null)
+                roadTierPanel.SetActive(false);
+        }
+
+        public void UpdateRoadTierButtons()
+        {
+            if(EraManager.Instance == null)
+                return; 
+            if (_roadTierButtons == null)
+                return;
+
+            for (int i = 0; i < _roadTierButtons.Length; i++)
+            {
+                if (_roadTierButtons[i] == null)
+                    continue;
+
+                _roadTierButtons[i].gameObject.SetActive(
+                    i < EraManager.Instance.GetCurrentEraIndex()
+                );
+            }
         }
 
         private string GetEraFolder(RoadTier tier)

@@ -98,7 +98,11 @@ namespace IdleBuilder.UI
 
                 if (mode == PlayerInteractionMode.BuildRoad)
                 {
+                    RoadUI.Instance.ShowRoadTierPanel();
                     TileView.RefreshCurrentHover();
+                } else
+                {
+                    RoadUI.Instance.HideRoadTierPanel();
                 }
             }
         }
