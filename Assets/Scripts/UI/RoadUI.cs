@@ -27,7 +27,9 @@ namespace IdleBuilder.UI
         [Header("Road Preview")]
         [SerializeField] private SpriteRenderer previewRenderer;
         [SerializeField] private RoadTier selectedRoadTier = RoadTier.Prehistoric;
-
+        [Header("Road Sprites")]
+        private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _roadSpritesByTier = new Dictionary<RoadTier, Dictionary<int, Sprite>>();
+        private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _bridgeSpritesByTier = new Dictionary<RoadTier, Dictionary<int, Sprite>>();
   
 
         private RectTransform _rectTransform;
@@ -53,6 +55,13 @@ namespace IdleBuilder.UI
             previewRenderer.color = new Color(1f, 1f, 1f, 0.6f);
             previewRenderer.gameObject.SetActive(false);
             HideTooltip();
+        }
+
+        private void Start()
+        {
+            if (Instance == null) Instance = this;
+            else Destroy(gameObject);
+            LoadAllRoadSprites();
         }
 
         private void OnEnable()
@@ -295,10 +304,91 @@ namespace IdleBuilder.UI
             tile.SetHasRoad(true);
         }
 
-        private Sprite GetRoadSprite( RoadTier tier, int mask, TileType tileType )
+        private Sprite GetRoadSprite(RoadTier tier, int mask, TileType tileType)
         {
-            
+            bool bridge =
+                tileType == TileType.River ||
+                tileType == TileType.Ocean;
+
+            Dictionary<RoadTier, Dictionary<int, Sprite>> sprites =
+                bridge
+                    ? _bridgeSpritesByTier
+                    : _roadSpritesByTier;
+
+            if (sprites.TryGetValue(tier, out Dictionary<int, Sprite> tierSprites) &&
+                tierSprites.TryGetValue(mask, out Sprite sprite))
+            {
+                return sprite;
+            }
+
             return null;
+        }
+
+        private void LoadAllRoadSprites()
+        {
+            _roadSpritesByTier.Clear();
+            _bridgeSpritesByTier.Clear();
+
+            if (RoadNetworkManager.Instance == null)
+                return;
+
+            foreach (RoadTierConfig config in RoadNetworkManager.Instance.GetAllConfigs())
+            {
+                Dictionary<int, Sprite> roadSprites = new Dictionary<int, Sprite>();
+                Dictionary<int, Sprite> bridgeSprites = new Dictionary<int, Sprite>();
+
+                string eraFolder = GetEraFolder(config.tier);
+
+                for (int mask = 0; mask <= 15; mask++)
+                {
+                    Sprite road = Resources.Load<Sprite>(
+                        $"Graphics/Road/{eraFolder}/road_{mask}"
+                    );
+
+                    if (road != null)
+                        roadSprites[mask] = road;
+
+                    Sprite bridge = Resources.Load<Sprite>(
+                        $"Graphics/Bridge/{eraFolder}/bridge_{mask}"
+                    );
+
+                    if (bridge != null)
+                        bridgeSprites[mask] = bridge;
+                }
+
+                _roadSpritesByTier[config.tier] = roadSprites;
+                _bridgeSpritesByTier[config.tier] = bridgeSprites;
+            }
+        }
+
+        private string GetEraFolder(RoadTier tier)
+        {
+            switch (tier)
+            {
+                case RoadTier.Prehistoric:
+                    return "Era_1";
+
+                case RoadTier.Antiquity:
+                    return "Era_2";
+
+                case RoadTier.MiddleAges:
+                    return "Era_3";
+
+                case RoadTier.Industrial:
+                    return "Era_4";
+
+                case RoadTier.Atomic:
+                    return "Era_5";
+
+                case RoadTier.Digital:
+                    return "Era_6";
+
+                case RoadTier.Fusion:
+                    return "Era_7";
+
+                default:
+                    return "Era_1";
+            }
         }
         
     }

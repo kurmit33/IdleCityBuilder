@@ -6,34 +6,12 @@ using IdleBuilder.Managers;
 
 namespace IdleBuilder.World
 {
-    [Serializable]
-    public class RoadSpriteEntry
-    {
-        public int maskValue;
-        public Sprite sprite;
-    }
 
     public class RoadNetworkManager : MonoBehaviour
     {
         public static RoadNetworkManager Instance { get; private set; }
 
-        // ============================================================
-        // STARY SYSTEM SPRITE'ÓW - ZACHOWANY
-        // ============================================================
 
-        [Header("Road Sprites Config (16 Variants)")]
-        [Tooltip("Jeśli puste, ikony zostaną automatycznie pobrane z Resources/Graphics/Road/road_0 .. road_15")]
-        [SerializeField] private List<RoadSpriteEntry> roadSprites =
-            new List<RoadSpriteEntry>();
-
-        [SerializeField] private List<RoadSpriteEntry> bridgeSprites =
-            new List<RoadSpriteEntry>();
-
-        private readonly Dictionary<int, Sprite> _roadSpriteLookup =
-            new Dictionary<int, Sprite>();
-
-        private readonly Dictionary<int, Sprite> _bridgeSpriteLookup =
-            new Dictionary<int, Sprite>();
 
         // ============================================================
         // NOWY SYSTEM TIERÓW
@@ -68,12 +46,6 @@ namespace IdleBuilder.World
         private readonly Dictionary<Vector2Int, RoadTier> _connectedPathBottleneck =
             new Dictionary<Vector2Int, RoadTier>();
 
-        // Lookup sprite'ów dla poszczególnych tierów.
-        private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _roadSpritesByTier =
-            new Dictionary<RoadTier, Dictionary<int, Sprite>>();
-
-        private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _bridgeSpritesByTier =
-            new Dictionary<RoadTier, Dictionary<int, Sprite>>();
 
         // ============================================================
         // UNITY
@@ -91,81 +63,15 @@ namespace IdleBuilder.World
                 return;
             }
 
-            // Stary system.
-            BuildLookupTable();
 
             // Nowy system.
             InitDefaultTierConfigs();
-            LoadAllTierSprites();
         }
 
-        // ============================================================
-        // STARY LOOKUP TABLE - ZACHOWANY
-        // ============================================================
 
-        private void BuildLookupTable()
+        public IReadOnlyList<RoadTierConfig> GetAllConfigs()
         {
-            _roadSpriteLookup.Clear();
-            _bridgeSpriteLookup.Clear();
-
-            int loadedFromResourcesCountRoad = 0;
-            int loadedFromResourcesCountBridge = 0;
-
-            for (int i = 0; i <= 15; i++)
-            {
-                Sprite loadedSprite =
-                    Resources.Load<Sprite>($"Graphics/Road/road_{i}");
-
-                if (loadedSprite != null)
-                {
-                    _roadSpriteLookup[i] = loadedSprite;
-                    loadedFromResourcesCountRoad++;
-                }
-
-                Sprite bridgeSprite =
-                    Resources.Load<Sprite>($"Graphics/Bridge/bridge_{i}");
-
-                if (bridgeSprite != null)
-                {
-                    _bridgeSpriteLookup[i] = bridgeSprite;
-                    loadedFromResourcesCountBridge++;
-                }
-            }
-
-            // Fallback z Inspectora.
-            foreach (var entry in roadSprites)
-            {
-                if (entry.sprite != null &&
-                    !_roadSpriteLookup.ContainsKey(entry.maskValue))
-                {
-                    _roadSpriteLookup.Add(
-                        entry.maskValue,
-                        entry.sprite
-                    );
-                }
-            }
-
-            foreach (var entry in bridgeSprites)
-            {
-                if (entry.sprite != null &&
-                    !_bridgeSpriteLookup.ContainsKey(entry.maskValue))
-                {
-                    _bridgeSpriteLookup.Add(
-                        entry.maskValue,
-                        entry.sprite
-                    );
-                }
-            }
-
-            Debug.Log(
-                $"[RoadNetworkManager] Załadowano " +
-                $"{loadedFromResourcesCountRoad}/16 sprajtów dróg."
-            );
-
-            Debug.Log(
-                $"[RoadNetworkManager] Załadowano " +
-                $"{loadedFromResourcesCountBridge}/16 sprajtów mostów."
-            );
+            return roadTierConfigs;
         }
 
         // ============================================================
@@ -182,8 +88,8 @@ namespace IdleBuilder.World
                 tier = RoadTier.Prehistoric,
                 tierName = "Ścieżka Ubita",
                 eraRequirement = EraType.Prehistory,
-                productionBonusPercent = 5f,
-                maintenanceDiscountPercent = 0f,
+                productionBonusPercent = -5f,
+                maintenanceDiscountPercent = -5f,
                 roadFolder = "Graphics/Road/Era1/",
                 bridgeFolder = "Graphics/Bridge/Era1/",
                 baseCosts = new List<ResourceCost>
@@ -191,12 +97,12 @@ namespace IdleBuilder.World
                     new ResourceCost
                     {
                         type = ResourceType.Wood,
-                        amount = 2
+                        amount = 10
                     },
                     new ResourceCost
                     {
                         type = ResourceType.Stone,
-                        amount = 1
+                        amount = 8
                     }
                 }
             });
@@ -206,8 +112,8 @@ namespace IdleBuilder.World
                 tier = RoadTier.Antiquity,
                 tierName = "Trakt Kamienno-Ilasty",
                 eraRequirement = EraType.Antiquity,
-                productionBonusPercent = 12f,
-                maintenanceDiscountPercent = 5f,
+                productionBonusPercent = 5f,
+                maintenanceDiscountPercent = 0f,
                 roadFolder = "Graphics/Road/Era2/",
                 bridgeFolder = "Graphics/Bridge/Era2/",
                 baseCosts = new List<ResourceCost>
@@ -215,17 +121,17 @@ namespace IdleBuilder.World
                     new ResourceCost
                     {
                         type = ResourceType.Stone,
-                        amount = 4
+                        amount = 20
                     },
                     new ResourceCost
                     {
                         type = ResourceType.Clay,
-                        amount = 3
+                        amount = 10
                     },
                     new ResourceCost
                     {
                         type = ResourceType.CopperOre,
-                        amount = 1
+                        amount = 2
                     }
                 }
             });
@@ -376,73 +282,6 @@ namespace IdleBuilder.World
             });
         }
 
-        // ============================================================
-        // ŁADOWANIE SPRITE'ÓW TIERÓW
-        // ============================================================
-
-        private void LoadAllTierSprites()
-        {
-            _roadSpritesByTier.Clear();
-            _bridgeSpritesByTier.Clear();
-
-            foreach (var config in roadTierConfigs)
-            {
-                Dictionary<int, Sprite> roadDict =
-                    new Dictionary<int, Sprite>();
-
-                Dictionary<int, Sprite> bridgeDict =
-                    new Dictionary<int, Sprite>();
-
-                for (int mask = 0; mask <= 15; mask++)
-                {
-                    Sprite roadSprite =
-                        Resources.Load<Sprite>(
-                            $"{config.roadFolder}road_{mask}"
-                        );
-
-                    if (roadSprite == null)
-                    {
-                        _roadSpriteLookup.TryGetValue(
-                            mask,
-                            out roadSprite
-                        );
-                    }
-
-                    if (roadSprite != null)
-                    {
-                        roadDict[mask] = roadSprite;
-                    }
-
-                    Sprite bridgeSprite =
-                        Resources.Load<Sprite>(
-                            $"{config.bridgeFolder}bridge_{mask}"
-                        );
-
-                    if (bridgeSprite == null)
-                    {
-                        _bridgeSpriteLookup.TryGetValue(
-                            mask,
-                            out bridgeSprite
-                        );
-                    }
-
-                    if (bridgeSprite != null)
-                    {
-                        bridgeDict[mask] = bridgeSprite;
-                    }
-                }
-
-                _roadSpritesByTier[config.tier] =
-                    roadDict;
-
-                _bridgeSpritesByTier[config.tier] =
-                    bridgeDict;
-            }
-        }
-
-        // ============================================================
-        // WYBÓR TIERU
-        // ============================================================
 
         public void SetSelectedRoadTier(RoadTier newTier)
         {
@@ -473,334 +312,23 @@ namespace IdleBuilder.World
             return null;
         }
 
-        // ============================================================
-        // STARE API - SPRAWDZANIE BUDOWY
-        // ============================================================
-
-        public bool CanBuildRoadAt(
-            TileView tile,
-            out int woodCost,
-            out int stoneCost)
-        {
-            woodCost = 0;
-            stoneCost = 0;
-
-            if (tile == null ||
-                !tile.IsUnlocked ||
-                tile.HasRoad)
-            {
-                return false;
-            }
-
-            if (tile.Type == TileType.TownHall ||
-                tile.Type == TileType.Ocean)
-            {
-                return false;
-            }
-
-            switch (tile.Type)
-            {
-                case TileType.Plains:
-                    woodCost = 2;
-                    stoneCost = 1;
-                    break;
-
-                case TileType.Forest:
-                    woodCost = 5;
-                    stoneCost = 10;
-                    break;
-
-                case TileType.Mountain:
-                    woodCost = 5;
-                    stoneCost = 15;
-                    break;
-
-                case TileType.River:
-                    woodCost = 10;
-                    stoneCost = 10;
-                    break;
-
-                default:
-                    return false;
-            }
-
-            return true;
-        }
-
-        // ============================================================
-        // STARE API - BUDOWA DROGI
-        // ============================================================
+    
 
         public bool PlaceRoad(TileView tile)
         {
-            if (!CanBuildRoadAt(
-                    tile,
-                    out int woodCost,
-                    out int stoneCost))
-            {
-                return false;
-            }
-
-            if (ResourceManager.Instance != null)
-            {
-                if (!ResourceManager.Instance.HasEnough(
-                        ResourceType.Wood,
-                        woodCost) ||
-                    !ResourceManager.Instance.HasEnough(
-                        ResourceType.Stone,
-                        stoneCost))
-                {
-                    Debug.LogWarning(
-                        "[RoadManager] Za mało zasobów na budowę drogi!"
-                    );
-
-                    return false;
-                }
-
-                ResourceManager.Instance.SubtractResource(
-                    ResourceType.Wood,
-                    woodCost
-                );
-
-                ResourceManager.Instance.SubtractResource(
-                    ResourceType.Stone,
-                    stoneCost
-                );
-            }
-
-            _roadTiles[tile.GridPosition] =
-                currentSelectedTier;
-
-            _manualMasks.Remove(
-                tile.GridPosition
-            );
-
-            tile.SetHasRoad(true);
-
-            UpdateRoadVisualsAround(
-                tile.GridPosition
-            );
-
-            RecalculateTownHallConnections();
-
-            //Debug.Log(
-            //    $"[RoadManager] Zbudowano drogę na pozycji " +
-            //    $"{tile.GridPosition}!"
-            //);
+            
 
             return true;
         } 
 
-        // ============================================================
-        // STARE API - REGISTER ROAD
-        // ============================================================
-
-        public void RegisterRoad(TileView tile)
-        {
-            if (tile == null ||
-                _roadTiles.ContainsKey(
-                    tile.GridPosition))
-            {
-                return;
-            }
-
-            _roadTiles[tile.GridPosition] =
-                currentSelectedTier;
-
-            tile.SetHasRoad(true);
-
-            UpdateRoadVisualsAround(
-                tile.GridPosition
-            );
-
-            RecalculateTownHallConnections();
-        }
-
-        // ============================================================
-        // STARE API - REMOVE ROAD
-        // ============================================================
 
         public bool RemoveRoad(TileView tile)
         {
-            if (tile == null)
-                return false;
-
-            Vector2Int position = tile.GridPosition;
-
-            // Sprawdzamy faktyczne dane RoadNetworkManager,
-            // a nie tylko tile.HasRoad.
-            if (!_roadTiles.ContainsKey(position))
-                return false;
-
-            // Usuwamy drogę.
-            _roadTiles.Remove(position);
-
-            // Usuwamy ewentualnie ustawioną ręczną maskę.
-            _manualMasks.Remove(position);
-
-            // Aktualizacja TileView.
-            tile.SetHasRoad(false);
-            tile.SetRoadSprite(null);
-
-            // Aktualizacja grafiki usuniętej pozycji i sąsiadów.
-            UpdateRoadVisualsAround(position);
-
-            // Przeliczenie połączeń z Ratuszem.
-            RecalculateTownHallConnections();
-
-            Debug.Log(
-                $"[RoadNetworkManager] Usunięto drogę na pozycji {position}"
-            );
-
             return true;
         }
 
-        // ============================================================
-        // STARE API - CLEAR NETWORK
-        // ============================================================
 
-        public void ClearNetwork()
-        {
-            _roadTiles.Clear();
-            _manualMasks.Clear();
-            _connectedToTownHall.Clear();
-            _connectedPathBottleneck.Clear();
-        }
 
-        // ============================================================
-        // SPRITE DLA TIERU
-        // ============================================================
-
-        public Sprite GetSpriteFor(
-            RoadTier tier,
-            int mask,
-            TileType tileType)
-        {
-            bool isWater =
-                tileType == TileType.River ||
-                tileType == TileType.Ocean;
-
-            Dictionary<RoadTier, Dictionary<int, Sprite>>
-                targetDict =
-                    isWater
-                        ? _bridgeSpritesByTier
-                        : _roadSpritesByTier;
-
-            if (targetDict.TryGetValue(
-                    tier,
-                    out Dictionary<int, Sprite> maskDict) &&
-                maskDict.TryGetValue(
-                    mask,
-                    out Sprite sprite))
-            {
-                return sprite;
-            }
-
-            // Fallback do Prehistoric.
-            if (targetDict.TryGetValue(
-                    RoadTier.Prehistoric,
-                    out Dictionary<int, Sprite> fallbackDict) &&
-                fallbackDict.TryGetValue(
-                    mask,
-                    out Sprite fallbackSprite))
-            {
-                return fallbackSprite;
-            }
-
-            // Ostateczny fallback do starego systemu.
-            if (isWater &&
-                _bridgeSpriteLookup.TryGetValue(
-                    mask,
-                    out Sprite legacyBridgeSprite))
-            {
-                return legacyBridgeSprite;
-            }
-
-            if (_roadSpriteLookup.TryGetValue(
-                    mask,
-                    out Sprite legacyRoadSprite))
-            {
-                return legacyRoadSprite;
-            }
-
-            Debug.LogWarning(
-                $"[RoadNetworkManager] Brak sprite'a dla " +
-                $"tier={tier}, mask={mask}"
-            );
-
-            return null;
-        }
-
-        // ============================================================
-        // AUTO-TILING
-        // ============================================================
-
-        public void UpdateRoadVisualsAround(
-            Vector2Int pos)
-        {
-            UpdateTileRoadSprite(pos);
-
-            UpdateTileRoadSprite(
-                pos + Vector2Int.up);
-
-            UpdateTileRoadSprite(
-                pos + Vector2Int.right);
-
-            UpdateTileRoadSprite(
-                pos + Vector2Int.down);
-
-            UpdateTileRoadSprite(
-                pos + Vector2Int.left);
-        }
-
-        private void UpdateTileRoadSprite(
-            Vector2Int pos)
-        {
-            if (GridManager.Instance == null)
-                return;
-
-            TileView tile =
-                GridManager.Instance.GetTileAt(pos);
-
-            if (tile == null)
-                return;
-
-            if (!_roadTiles.TryGetValue(
-                    pos,
-                    out RoadTier tier))
-            {
-                if (!tile.HasRoad)
-                {
-                    tile.SetRoadSprite(null);
-                }
-
-                return;
-            }
-
-            int mask;
-
-            if (_manualMasks.TryGetValue(
-                    pos,
-                    out int manualMask))
-            {
-                mask = manualMask;
-            }
-            else
-            {
-                mask = GetRoadConnectionMask(pos);
-            }
-
-            Sprite selectedSprite =
-                GetSpriteFor(
-                    tier,
-                    mask,
-                    tile.Type
-                );
-
-            tile.SetRoadSprite(
-                selectedSprite
-            );
-        }
 
         public int GetRoadConnectionMask(
             Vector2Int pos)
@@ -854,23 +382,6 @@ namespace IdleBuilder.World
                    tile.Type == TileType.TownHall;
         }
 
-        // Zachowana stara funkcja.
-        private Sprite GetRoadSpriteForMask(
-            int mask)
-        {
-            if (_roadSpriteLookup.TryGetValue(
-                    mask,
-                    out Sprite sprite))
-            {
-                return sprite;
-            }
-
-            Debug.LogWarning(
-                $"[RoadManager] Brak sprajta drogi dla maski {mask}!"
-            );
-
-            return null;
-        }
 
         // ============================================================
         // POŁĄCZENIA Z TOWN HALL
