@@ -167,12 +167,10 @@ namespace IdleBuilder.Managers
 
                 return;
             }
-            bool success = RoadPlacementManager.Instance.TryBuildRoadOnTile(tile);
-            if (success)
+            if (CurrentMode == PlayerInteractionMode.BuildRoad)
             {
-                        // Sprawdź, czy nowo postawiona droga łączy się z Ratuszem
-                        bool isConnected = RoadNetworkManager.Instance.IsRoadConnectedToTownHall(tile.GridPosition);
-                        //Debug.Log($"[Road] Droga na {tile.GridPosition} | Połączona z Ratuszem: {isConnected}");
+                RoadPlacementManager.Instance.TryBuildRoadOnTile(tile);
+                return;
             }
                 
         }

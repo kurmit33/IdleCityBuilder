@@ -488,11 +488,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IdleBuilder.UI.RoadCostUI
   tooltipPanel: {fileID: 1666911038}
   tileTypeTitleText: {fileID: 1561932206}
+  costTextText: {fileID: 811334000}
   statusText: {fileID: 51883390}
-  costContainer: {fileID: 1061540219}
-  costRowPrefab: {fileID: 811334000}
   followMouse: 1
   mouseOffset: {x: 80, y: -40, z: 0}
+  previewRenderer: {fileID: 0}
+  selectedRoadTier: 1
 --- !u!1 &340483755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3437,7 +3438,7 @@ GameObject:
   - component: {fileID: 1666911042}
   - component: {fileID: 1666911041}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: RoadToolpitPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,6 +14,7 @@ namespace IdleBuilder.World
         public TileType Type { get; private set; }
         public bool IsUnlocked { get; private set; }
         public bool HasRoad { get; private set; }
+        public RoadTier RoadTier { get; private set; }
 
         public static event Action<TileView> OnTileClickedEvent;
         public static event Action<TileView> OnTileHoveredEvent;
@@ -39,18 +40,13 @@ namespace IdleBuilder.World
                 roadSpriteRenderer.sortingOrder = _spriteRenderer.sortingOrder + 1; // Drogę rysujemy NAD terenem
             }
         }
-        public void Initialize(Vector2Int gridPosition, TileType type, Sprite sprite, bool isUnlocked)
-        {
-            GridPosition = gridPosition;
-            Type = type;
 
-            UpdateColliderSize();
-        }
 
         public void Setup(Vector2Int gridPosition, TileType type, Sprite sprite, bool isUnlocked)
         {
             GridPosition = gridPosition;
             Type = type;
+            RoadTier = RoadTier.None;
             if(_spriteRenderer != null)_spriteRenderer.sprite = sprite;
 
             if (sprite != null && _boxCollider != null)
@@ -103,6 +99,10 @@ namespace IdleBuilder.World
                 roadSpriteRenderer.sprite = sprite;
                 roadSpriteRenderer.color = IsUnlocked ? Color.white : new Color(0.3f, 0.3f, 0.3f, 0.7f);
             }
+        }
+        public void SetRoadTier(RoadTier tier)
+        {
+            RoadTier = tier;
         }
 
         public void OnTileClicked()

@@ -15,6 +15,7 @@ namespace IdleBuilder.World
     }
     public enum RoadTier
     {
+        None = 0,
         Prehistoric = 1,
         Antiquity = 2,
         MiddleAges = 3,
