@@ -102,9 +102,16 @@ namespace IdleBuilder.UI
 
         private void Start()
         {
-            if (Instance == null) Instance = this;
-            else Destroy(gameObject);
+            if (Instance == null)
+                Instance = this;
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             LoadAllRoadSprites();
+
             _roadTierButtons = new Button[]
             {
                 era1RoadButton,
@@ -116,15 +123,42 @@ namespace IdleBuilder.UI
                 era7RoadButton
             };
 
-            era1RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Prehistoric));
-            era2RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Antiquity));
-            era3RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.MiddleAges));
-            era4RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Industrial));
-            era5RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Atomic));
-            era6RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Digital));
-            era7RoadButton.onClick.AddListener(() => SelectRoadTier(RoadTier.Fusion));
+            SetupRoadTierButton(
+                era1RoadButton,
+                RoadTier.Prehistoric
+            );
 
-        
+            SetupRoadTierButton(
+                era2RoadButton,
+                RoadTier.Antiquity
+            );
+
+            SetupRoadTierButton(
+                era3RoadButton,
+                RoadTier.MiddleAges
+            );
+
+            SetupRoadTierButton(
+                era4RoadButton,
+                RoadTier.Industrial
+            );
+
+            SetupRoadTierButton(
+                era5RoadButton,
+                RoadTier.Atomic
+            );
+
+            SetupRoadTierButton(
+                era6RoadButton,
+                RoadTier.Digital
+            );
+
+            SetupRoadTierButton(
+                era7RoadButton,
+                RoadTier.Fusion
+            );
+
+            UpdateRoadTierButtons();
         }
 
         private void OnEnable()
@@ -145,6 +179,35 @@ namespace IdleBuilder.UI
             {
                 UpdatePositionToMouse();
             }
+        }
+
+        private void SetupRoadTierButton(
+            Button button,
+            RoadTier tier)
+        {
+            if (button == null)
+                return;
+
+            button.onClick.AddListener(
+                () => SelectRoadTier(tier)
+            );
+
+            Sprite sprite = GetRoadSprite(
+                tier,
+                0,
+                TileType.Plains
+            );
+
+            if (sprite == null)
+            {
+                button.gameObject.SetActive(false);
+                return;
+            }
+
+            Image image = button.GetComponent<Image>();
+
+            if (image != null)
+                image.sprite = sprite;
         }
 
         public void UpdateRoadPreview(TileView tile)
@@ -499,22 +562,34 @@ namespace IdleBuilder.UI
                 roadTierPanel.SetActive(false);
         }
 
-        public void UpdateRoadTierButtons()
+        private void UpdateRoadTierButtons()
         {
-            if(EraManager.Instance == null)
-                return; 
-            if (_roadTierButtons == null)
+            if (EraManager.Instance == null)
                 return;
 
-            for (int i = 0; i < _roadTierButtons.Length; i++)
-            {
-                if (_roadTierButtons[i] == null)
-                    continue;
+            int currentEra =
+                (int)EraManager.Instance.GetCurrentEra();
 
-                _roadTierButtons[i].gameObject.SetActive(
-                    i < EraManager.Instance.GetCurrentEraIndex()
-                );
-            }
+            SetRoadButtonEra(era1RoadButton, 1, currentEra);
+            SetRoadButtonEra(era2RoadButton, 2, currentEra);
+            SetRoadButtonEra(era3RoadButton, 3, currentEra);
+            SetRoadButtonEra(era4RoadButton, 4, currentEra);
+            SetRoadButtonEra(era5RoadButton, 5, currentEra);
+            SetRoadButtonEra(era6RoadButton, 6, currentEra);
+            SetRoadButtonEra(era7RoadButton, 7, currentEra);
+        }
+
+        private void SetRoadButtonEra(
+            Button button,
+            int requiredEra,
+            int currentEra)
+        {
+            if (button == null)
+                return;
+
+            button.gameObject.SetActive(
+                requiredEra <= currentEra
+            );
         }
 
         private string GetEraFolder(RoadTier tier)
