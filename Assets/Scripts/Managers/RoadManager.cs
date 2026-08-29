@@ -27,6 +27,7 @@ namespace IdleBuilder.World
 
         // Najlepszy bottleneck tier ścieżki do Town Hall.
         private readonly Dictionary<Vector2Int, RoadTier> _connectedPathBottleneck = new Dictionary<Vector2Int, RoadTier>();
+        private readonly Dictionary<Vector2Int, int> _connectedPathDistance = new Dictionary<Vector2Int, int>();
 
         private void Awake()
         {
@@ -300,26 +301,26 @@ namespace IdleBuilder.World
 
 
 
-        public int GetRoadConnectionMask(Vector2Int pos)
+        public int GetRoadConnectionMask(Vector2Int pos, Vector2Int? previewPosition = null)
         {
             int mask = 0;
 
-            if (HasRoadOrTownHall(pos + Vector2Int.up))
+            if (HasRoadOrTownHall(pos + Vector2Int.up, previewPosition))
             {
                 mask |= (int)RoadDirections.North;
             }
 
-            if (HasRoadOrTownHall(pos + Vector2Int.right))
+            if (HasRoadOrTownHall(pos + Vector2Int.right, previewPosition))
             {
                 mask |= (int)RoadDirections.East;
             }
 
-            if (HasRoadOrTownHall( pos + Vector2Int.down))
+            if (HasRoadOrTownHall( pos + Vector2Int.down, previewPosition))
             {
                 mask |= (int)RoadDirections.South;
             }
 
-            if (HasRoadOrTownHall(pos + Vector2Int.left))
+            if (HasRoadOrTownHall(pos + Vector2Int.left, previewPosition))
             {
                 mask |= (int)RoadDirections.West;
             }
@@ -327,15 +328,14 @@ namespace IdleBuilder.World
             return mask;
         }
 
-        private bool HasRoadOrTownHall(Vector2Int pos)
+        private bool HasRoadOrTownHall(Vector2Int pos, Vector2Int? previewPosition = null)
         {
-            if (GridManager.Instance == null)
-                return false;
+            if (GridManager.Instance == null) return false;
 
             TileView tile = GridManager.Instance.GetTileAt(pos);
 
-            if (tile == null)
-                return false;
+            if (tile == null) return false;
+            if (previewPosition.HasValue && pos == previewPosition.Value) return true;
 
             return tile.HasRoad || tile.Type == TileType.TownHall;
         }
@@ -384,6 +384,7 @@ namespace IdleBuilder.World
             PayRoadCosts(costs);
 
             tile.SetRoadTier(RoadUI.Instance.SelectedRoadTier);
+            RoadUI.Instance?.HideAll();
             tile.SetHasRoad(true);
 
             RefreshRoadMasksAround(tile.GridPosition);
@@ -398,6 +399,7 @@ namespace IdleBuilder.World
         {
             _connectedToTownHall.Clear();
             _connectedPathBottleneck.Clear();
+            _connectedPathDistance.Clear();
 
             if (GridManager.Instance == null)
                 return;
@@ -410,71 +412,102 @@ namespace IdleBuilder.World
                 Vector2Int.left
             };
 
-            Queue<(Vector2Int pos, RoadTier bottleneck)> queue = new Queue<(Vector2Int, RoadTier)>();
+            Queue<Vector2Int> queue =
+                new Queue<Vector2Int>();
 
-            // Szukamy wszystkich dróg bezpośrednio sąsiadujących z Town Hall.
             foreach (TileView tile in GridManager.Instance.GetAllTiles())
             {
                 if (tile == null || !tile.HasRoad)
                     continue;
 
-                Vector2Int roadPos = tile.GridPosition;
-
-                if (!IsAdjacentToTownHall(roadPos))
+                if (!IsAdjacentToTownHall(tile.GridPosition))
                     continue;
 
-                RoadTier roadTier = tile.RoadTier;
+                Vector2Int position = tile.GridPosition;
 
-                _connectedToTownHall.Add(roadPos);
-                _connectedPathBottleneck[roadPos] = roadTier;
+                _connectedToTownHall.Add(position);
+                _connectedPathDistance[position] = 1;
+                _connectedPathBottleneck[position] = tile.RoadTier;
 
-                queue.Enqueue((roadPos, roadTier));
+                queue.Enqueue(position);
             }
 
-            // Rozchodzimy się po całej sieci dróg.
             while (queue.Count > 0)
             {
-                var current = queue.Dequeue();
+                Vector2Int currentPosition = queue.Dequeue();
 
-                Vector2Int currentPos = current.pos;
-                RoadTier currentBottleneck = current.bottleneck;
+                int currentDistance =
+                    _connectedPathDistance[currentPosition];
+
+                RoadTier currentBottleneck =
+                    _connectedPathBottleneck[currentPosition];
 
                 foreach (Vector2Int direction in directions)
                 {
-                    Vector2Int neighborPos = currentPos + direction;
+                    Vector2Int neighborPosition =
+                        currentPosition + direction;
 
                     TileView neighborTile =
-                        GridManager.Instance.GetTileAt(neighborPos);
+                        GridManager.Instance.GetTileAt(
+                            neighborPosition
+                        );
 
-                    if (neighborTile == null || !neighborTile.HasRoad)
+                    if (neighborTile == null ||
+                        !neighborTile.HasRoad)
+                    {
                         continue;
+                    }
 
-                    RoadTier neighborTier = neighborTile.RoadTier;
+                    int newDistance =
+                        currentDistance + 1;
 
-                    // Na tej ścieżce liczy się najgorszy tier.
                     RoadTier newBottleneck =
-                        neighborTier < currentBottleneck
-                            ? neighborTier
+                        neighborTile.RoadTier < currentBottleneck
+                            ? neighborTile.RoadTier
                             : currentBottleneck;
 
                     bool alreadyConnected =
-                        _connectedPathBottleneck.TryGetValue(
-                            neighborPos,
-                            out RoadTier existingBottleneck
+                        _connectedPathDistance.TryGetValue(
+                            neighborPosition,
+                            out int existingDistance
                         );
 
-                    // Zachowujemy lepszy bottleneck.
-                    if (!alreadyConnected ||
+                    // Pierwsza znaleziona ścieżka jest najkrótsza.
+                    if (!alreadyConnected)
+                    {
+                        _connectedToTownHall.Add(neighborPosition);
+
+                        _connectedPathDistance[
+                            neighborPosition
+                        ] = newDistance;
+
+                        _connectedPathBottleneck[
+                            neighborPosition
+                        ] = newBottleneck;
+
+                        queue.Enqueue(neighborPosition);
+
+                        continue;
+                    }
+
+                    // Dłuższa trasa nas nie interesuje.
+                    if (newDistance > existingDistance)
+                        continue;
+
+                    RoadTier existingBottleneck =
+                        _connectedPathBottleneck[
+                            neighborPosition
+                        ];
+
+                    // Ta sama długość → lepszy najgorszy tier.
+                    if (newDistance == existingDistance &&
                         newBottleneck > existingBottleneck)
                     {
-                        _connectedToTownHall.Add(neighborPos);
+                        _connectedPathBottleneck[
+                            neighborPosition
+                        ] = newBottleneck;
 
-                        _connectedPathBottleneck[neighborPos] =
-                            newBottleneck;
-
-                        queue.Enqueue(
-                            (neighborPos, newBottleneck)
-                        );
+                        queue.Enqueue(neighborPosition);
                     }
                 }
             }
@@ -556,15 +589,13 @@ namespace IdleBuilder.World
         // BONUS DROGI DLA BUDYNKU
         // ============================================================
 
-        public RoadBonusResult GetBuildingRoadBonus(
-            Vector2Int buildingPos)
+        public RoadBonusResult GetBuildingRoadBonus(Vector2Int buildingPos)
         {
             RoadBonusResult result =
                 new RoadBonusResult
                 {
                     isConnectedToTownHall = false,
-                    effectiveTier =
-                        RoadTier.Prehistoric,
+                    effectiveTier = RoadTier.Prehistoric,
                     productionBonusPercent = 0f,
                     maintenanceDiscountPercent = 0f
                 };
@@ -580,67 +611,78 @@ namespace IdleBuilder.World
                 Vector2Int.left
             };
 
-            RoadTier bestPathTier =
+            bool foundPath = false;
+
+            int shortestDistance = int.MaxValue;
+
+            RoadTier bestTier =
                 RoadTier.Prehistoric;
 
-            bool connected = false;
-
-            foreach (var dir in directions)
+            foreach (Vector2Int direction in directions)
             {
-                Vector2Int neighbor =
-                    buildingPos + dir;
+                Vector2Int roadPosition =
+                    buildingPos + direction;
 
-                TileView neighborTile =
+                TileView roadTile =
                     GridManager.Instance.GetTileAt(
-                        neighbor
+                        roadPosition
                     );
 
-                if (neighborTile != null &&
-                    neighborTile.Type ==
-                    TileType.TownHall)
+                // Budynek bezpośrednio przy Town Hall.
+                if (roadTile != null &&
+                    roadTile.Type == TileType.TownHall)
                 {
-                    connected = true;
-                    bestPathTier =
-                        RoadTier.Fusion;
-
+                    foundPath = true;
+                    shortestDistance = 0;
+                    bestTier = RoadTier.Fusion;
                     break;
                 }
 
-                if (_connectedPathBottleneck.TryGetValue(
-                        neighbor,
-                        out RoadTier pathBottleneck))
+                if (!_connectedPathDistance.TryGetValue(
+                        roadPosition,
+                        out int distance))
                 {
-                    connected = true;
+                    continue;
+                }
 
-                    if (pathBottleneck >
-                        bestPathTier)
-                    {
-                        bestPathTier =
-                            pathBottleneck;
-                    }
+                if (!_connectedPathBottleneck.TryGetValue(
+                        roadPosition,
+                        out RoadTier pathTier))
+                {
+                    continue;
+                }
+
+                // Zawsze wybieramy najkrótszą trasę.
+                if (distance < shortestDistance)
+                {
+                    foundPath = true;
+                    shortestDistance = distance;
+                    bestTier = pathTier;
+                }
+                // Jeżeli trasy są tak samo krótkie,
+                // wybieramy lepszy bottleneck.
+                else if (distance == shortestDistance &&
+                        pathTier > bestTier)
+                {
+                    bestTier = pathTier;
                 }
             }
 
-            if (connected)
-            {
-                RoadTierConfig config =
-                    GetConfig(bestPathTier);
+            if (!foundPath)
+                return result;
 
-                if (config != null)
-                {
-                    result.isConnectedToTownHall =
-                        true;
+            RoadTierConfig config =
+                GetConfig(bestTier);
 
-                    result.effectiveTier =
-                        bestPathTier;
+            if (config == null)
+                return result;
 
-                    result.productionBonusPercent =
-                        config.productionBonusPercent;
-
-                    result.maintenanceDiscountPercent =
-                        config.maintenanceDiscountPercent;
-                }
-            }
+            result.isConnectedToTownHall = true;
+            result.effectiveTier = bestTier;
+            result.productionBonusPercent =
+                config.productionBonusPercent;
+            result.maintenanceDiscountPercent =
+                config.maintenanceDiscountPercent;
 
             return result;
         }

@@ -29,10 +29,13 @@ namespace IdleBuilder.UI
         [Header("Road Preview")]
         [SerializeField] private SpriteRenderer previewRenderer;
 
+        private SpriteRenderer[] previewRenderers = new SpriteRenderer[5];
+
         [Header("Road Sprites")]
         private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _roadSpritesByTier = new Dictionary<RoadTier, Dictionary<int, Sprite>>();
         private readonly Dictionary<RoadTier, Dictionary<int, Sprite>> _bridgeSpritesByTier = new Dictionary<RoadTier, Dictionary<int, Sprite>>();
-                [Header("Przyciski Wyboru Ery Dróg")]
+
+        [Header("Przyciski Wyboru Ery Dróg")]
         [SerializeField] private Button era1RoadButton; // Ścieżka Ubita
         [SerializeField] private Button era2RoadButton; // Trakt Kamienny
         [SerializeField] private Button era3RoadButton; // Bruk
@@ -63,10 +66,35 @@ namespace IdleBuilder.UI
                 previewRenderer = previewObj.AddComponent<SpriteRenderer>();
             }
 
+            previewRenderers[0] = previewRenderer;
+
+            Vector2Int[] directions =
+            {
+                Vector2Int.up,
+                Vector2Int.right,
+                Vector2Int.down,
+                Vector2Int.left
+            };
+
+            for (int i = 0; i < directions.Length; i++)
+            {
+                GameObject previewObj =
+                    new GameObject($"RoadPreview_{directions[i]}");
+
+                SpriteRenderer renderer =
+                    previewObj.AddComponent<SpriteRenderer>();
+
+                renderer.sortingOrder = 10;
+                renderer.color = new Color(1f, 1f, 1f, 0.6f);
+                renderer.gameObject.SetActive(false);
+
+                previewRenderers[i + 1] = renderer;
+            }
+
             previewRenderer.sortingOrder = 10;
             previewRenderer.color = new Color(1f, 1f, 1f, 0.6f);
             previewRenderer.gameObject.SetActive(false);
-            HideTooltip();
+            HideAll();
         }
 
         private void Start()
@@ -107,12 +135,16 @@ namespace IdleBuilder.UI
 
         public void UpdateRoadPreview(TileView tile)
         {
-            if (tile == null || !tile.IsUnlocked || tile.Type == TileType.TownHall )
+            if (tile == null ||
+                !tile.IsUnlocked ||
+                tile.Type == TileType.TownHall)
             {
                 HideRoadPreview();
                 return;
             }
-            if(tile.HasRoad && tile.RoadTier <= SelectedRoadTier)
+
+            if (tile.HasRoad &&
+                tile.RoadTier <= SelectedRoadTier)
             {
                 HideRoadPreview();
                 return;
@@ -124,8 +156,12 @@ namespace IdleBuilder.UI
                 return;
             }
 
+            Vector2Int pos = tile.GridPosition;
+
+            // Główny kafelek
             int mask = RoadManager.Instance.GetRoadConnectionMask(
-                tile.GridPosition
+                pos,
+                pos
             );
 
             Sprite previewSprite = GetRoadSprite(
@@ -140,9 +176,66 @@ namespace IdleBuilder.UI
                 return;
             }
 
-            previewRenderer.gameObject.SetActive(true);
-            previewRenderer.transform.position = tile.transform.position;
-            previewRenderer.sprite = previewSprite;
+            previewRenderers[0].transform.position =
+                tile.transform.position;
+
+            previewRenderers[0].sprite =
+                previewSprite;
+
+            previewRenderers[0].gameObject.SetActive(true);
+
+            // Cztery sąsiednie kafelki
+            Vector2Int[] directions =
+            {
+                Vector2Int.up,
+                Vector2Int.right,
+                Vector2Int.down,
+                Vector2Int.left
+            };
+
+            for (int i = 0; i < directions.Length; i++)
+            {
+                TileView neighbor =
+                    GridManager.Instance.GetTileAt(
+                        pos + directions[i]
+                    );
+
+                SpriteRenderer renderer =
+                    previewRenderers[i + 1];
+
+                if (neighbor == null || !neighbor.HasRoad)
+                {
+                    renderer.gameObject.SetActive(false);
+                    continue;
+                }
+
+                int neighborMask =
+                    RoadManager.Instance.GetRoadConnectionMask(
+                        neighbor.GridPosition,
+                        pos
+                    );
+
+                Sprite neighborSprite =
+                    GetRoadSprite(
+                        neighbor.RoadTier,
+                        neighborMask,
+                        neighbor.Type
+                    );
+
+                if (neighborSprite == null)
+                {
+                    renderer.gameObject.SetActive(false);
+                    continue;
+                }
+
+                renderer.transform.position =
+                    neighbor.transform.position;
+
+                renderer.sprite =
+                    neighborSprite;
+
+                renderer.gameObject.SetActive(true);
+            }
         }
 
         public void HideAll()
@@ -152,10 +245,10 @@ namespace IdleBuilder.UI
         }
         public void HideRoadPreview()
         {
-
-            if (previewRenderer != null)
+            for (int i = 0; i < previewRenderers.Length; i++)
             {
-                previewRenderer.gameObject.SetActive(false);
+                if (previewRenderers[i] != null)
+                    previewRenderers[i].gameObject.SetActive(false);
             }
         }
         public void ApplyRoadMask(TileView tile, int mask)
